@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 245 245 247;
+  --foreground: 30 32 34;
+  --card: 245 245 247;
+  --card-foreground: 30 32 34;
+  --popover: 245 245 247;
+  --popover-foreground: 30 32 34;
+  --primary: 0 123 255;
+  --primary-foreground: 245 245 247;
+  --secondary: 214 214 214;
+  --secondary-foreground: 30 32 34;
+  --muted: 214 214 214;
+  --muted-foreground: 30 32 34;
+  --accent: 214 214 214;
+  --accent-foreground: 30 32 34;
+  --destructive: 239 68 68;
+  --destructive-foreground: 245 245 247;
+  --border: 214 214 214;
+  --input: 214 214 214;
+  --ring: 0 123 255;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 30 32 34;
+  --foreground: 226 232 240;
+  --card: 30 32 34;
+  --card-foreground: 226 232 240;
+  --popover: 30 32 34;
+  --popover-foreground: 226 232 240;
+  --primary: 0 123 255;
+  --primary-foreground: 245 245 247;
+  --secondary: 214 214 214;
+  --secondary-foreground: 30 32 34;
+  --muted: 214 214 214;
+  --muted-foreground: 226 232 240;
+  --accent: 214 214 214;
+  --accent-foreground: 226 232 240;
+  --destructive: 239 68 68;
+  --destructive-foreground: 245 245 247;
+  --border: 214 214 214;
+  --input: 214 214 214;
+  --ring: 0 123 255;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom color classes */
+  .text-charcoal {
+    color: #1E2022;
+  }
+  
+  .text-cloud-gray {
+    color: #F5F5F7;
+  }
+  
+  .text-signal-blue {
+    color: #007BFF;
+  }
+  
+  .text-stone {
+    color: #D6D6D6;
+  }
+  
+  .bg-charcoal {
+    background-color: #1E2022;
+  }
+  
+  .bg-cloud-gray {
+    background-color: #F5F5F7;
+  }
+  
+  .bg-signal-blue {
+    background-color: #007BFF;
+  }
+  
+  .bg-stone {
+    background-color: #D6D6D6;
+  }
+  
+  .border-stone {
+    border-color: #D6D6D6;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(245, 245, 247, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(214, 214, 214, 0.2);
+}
+
+.glass-dark {
+  background: rgba(30, 32, 34, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(214, 214, 214, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E2022;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #007BFF, #007BFF);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0056b3, #0056b3);
+}
+
+/* Code syntax highlighting */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6b7280;
+}
+
+.token.punctuation {
+  color: #e5e7eb;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f87171;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #34d399;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #38bdf8;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #a855f7;
+}
+
+.token.function,
+.token.class-name {
+  color: #fbbf24;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #f472b6;
+}
+
+/* Smooth focus states */
+*:focus-visible {
+  outline: 2px solid #007BFF;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Gradient text animation */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Print styles for resume */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-slate-400 {
+    color: #cbd5e1;
+  }
+  
+  .border-slate-700 {
+    border-color: #475569;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode specific styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light mode overrides */
+.light {
+  color-scheme: light;
+}
+
+.light body {
+  background: #F5F5F7;
+}
+
+.light .text-cloud-gray {
+  color: #1E2022;
+}
+
+.light .text-stone {
+  color: #1E2022;
+}
+
+.light .bg-charcoal {
+  background-color: #F5F5F7;
+}
+
+.light .border-stone {
+  border-color: #D6D6D6;
+}
