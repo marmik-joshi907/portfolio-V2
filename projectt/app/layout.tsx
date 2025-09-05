@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: 'Portfolio of Marmik Joshi, a passionate Software Engineer specializing in full-stack development and AI technologies.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://marmikjoshi.dev',
+    url: 'https://marmik907.vercel.app/',
     siteName: 'Marmik Joshi Portfolio',
     images: [
       {
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Marmik Joshi - Software Engineer Portfolio',
     description: 'Portfolio of Marmik Joshi, a passionate Software Engineer specializing in full-stack development and AI technologies.',
-    creator: '@marmikjoshi',
+    creator: '@marmikjoshi1409',
     images: ['/og-image.jpg'],
   },
   robots: {

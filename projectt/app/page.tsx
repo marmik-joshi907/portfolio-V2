@@ -2,7 +2,10 @@
 
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Twitter, ExternalLink, ChevronDown, Terminal, Code2, Sparkles, MapPin, Calendar } from 'lucide-react';
+import {
+  Mail, Github, Linkedin, Twitter, ChevronDown,
+  Terminal, Code2, Sparkles, MapPin, Calendar
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -19,29 +22,29 @@ import { TimelineItem } from '@/components/timeline-item';
 import { personalInfo, skills, education, experience, projects, codeSnippets } from '@/lib/data';
 import Image from 'next/image';
 
+// 🔌 Formspree
+// Make sure you've run: npm install @formspree/react
+import { useForm, ValidationError } from '@formspree/react';
+
 export default function Portfolio() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
+  // Formspree hook (form id mdklpplk)
+  const [fsState, fsHandleSubmit] = useForm('mdklpplk');
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const getInTouchRef = useRef<HTMLButtonElement>(null);
   const downloadResumeRef = useRef<HTMLDivElement>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-  };
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleGetInTouchClick = () => {
-    // Trigger animation
     if (getInTouchRef.current) {
       getInTouchRef.current.style.transform = 'scale(0.95)';
       setTimeout(() => {
@@ -54,7 +57,6 @@ export default function Portfolio() {
   };
 
   const handleDownloadResumeClick = () => {
-    // Trigger animation
     if (downloadResumeRef.current) {
       downloadResumeRef.current.style.transform = 'scale(0.95)';
       setTimeout(() => {
@@ -78,7 +80,7 @@ export default function Portfolio() {
       <nav className="fixed top-0 w-full bg-cloud-gray/90 dark:bg-charcoal/90 backdrop-blur-md border-b border-stone/30 z-40">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center space-x-3"
@@ -88,11 +90,11 @@ export default function Portfolio() {
               </div>
               <h1 className="text-xl font-bold text-charcoal dark:text-cloud-gray">{personalInfo.name}</h1>
             </motion.div>
-            
+
             <div className="flex items-center space-x-4">
               <CurrentTime />
               <ThemeToggle />
-              
+
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -104,7 +106,7 @@ export default function Portfolio() {
                   <div className={`w-full h-0.5 bg-charcoal dark:bg-cloud-gray transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
                 </div>
               </button>
-              
+
               <div className="hidden md:flex space-x-6">
                 {['About', 'Skills', 'Experience', 'Projects', 'Contact'].map((item) => (
                   <button
@@ -118,7 +120,7 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
-          
+
           {/* Mobile menu */}
           {isMobileMenuOpen && (
             <motion.div
@@ -177,7 +179,7 @@ export default function Portfolio() {
             >
               {personalInfo.name}
             </motion.h1>
-            
+
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -186,7 +188,7 @@ export default function Portfolio() {
             >
               {personalInfo.title}
             </motion.h2>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -195,18 +197,15 @@ export default function Portfolio() {
             >
               {personalInfo.bio}
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8"
             >
-              <motion.div
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <Button 
+              <motion.div whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.05 }}>
+                <Button
                   ref={getInTouchRef}
                   onClick={handleGetInTouchClick}
                   className="bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -214,8 +213,8 @@ export default function Portfolio() {
                   Get In Touch
                 </Button>
               </motion.div>
-              
-              <div ref={downloadResumeRef}>
+
+              <div ref={downloadResumeRef} onClick={handleDownloadResumeClick}>
                 <DownloadResume />
               </div>
             </motion.div>
@@ -234,7 +233,7 @@ export default function Portfolio() {
                   email: Mail
                 };
                 const Icon = icons[platform as keyof typeof icons];
-                
+
                 return (
                   <a
                     key={platform}
@@ -259,11 +258,11 @@ export default function Portfolio() {
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, -8, 0],
               scale: [1, 1.1, 1],
             }}
-            transition={{ 
+            transition={{
               duration: 2,
               repeat: Infinity,
               ease: "easeInOut"
@@ -290,7 +289,7 @@ export default function Portfolio() {
             </h2>
             <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -320,14 +319,14 @@ export default function Portfolio() {
                         <p className="text-signal-blue">{personalInfo.title}</p>
                       </div>
                     </div>
-                    
+
                     <p className="text-charcoal dark:text-stone leading-relaxed mb-6">
-                      I'm a dedicated Computer Engineering student with an exceptional academic record, 
-                      placing me in the top percentile of my cohort. My academic excellence is complemented 
-                      by a strong, practical command of programming languages like Java, focusing on 
+                      I&apos;m a dedicated Computer Engineering student with an exceptional academic record,
+                      placing me in the top percentile of my cohort. My academic excellence is complemented
+                      by a strong, practical command of programming languages like Java, focusing on
                       object-oriented and multithreading capabilities.
                     </p>
-                    
+
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center space-x-2">
                         <MapPin className="w-4 h-4 text-signal-blue" />
@@ -384,7 +383,7 @@ export default function Portfolio() {
                   <Code2 className="w-6 h-6 mr-3 text-signal-blue" />
                   {category.replace(/([A-Z])/g, ' $1').trim()}
                 </motion.h3>
-                
+
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {skillList.map((skill, index) => (
                     <SkillCard
@@ -470,7 +469,7 @@ export default function Portfolio() {
             </h2>
             <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <ProjectCard
@@ -500,11 +499,11 @@ export default function Portfolio() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4">
-              Let's <span className="text-signal-blue">Connect</span>
+              Let&apos;s <span className="text-signal-blue">Connect</span>
             </h2>
             <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -512,14 +511,14 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-charcoal dark:text-cloud-gray mb-6">Let's Work Together</h3>
+              <h3 className="text-2xl font-bold text-charcoal dark:text-cloud-gray mb-6">Let&apos;s Work Together</h3>
               <p className="text-lg mb-8 leading-relaxed">
-                I'm always interested in new opportunities and collaborations. 
-                Whether you have a project in mind or just want to connect, I'd love to hear from you.
+                I&apos;m always interested in new opportunities and collaborations.
+                Whether you have a project in mind or just want to connect, I&apos;d love to hear from you.
               </p>
-              
+
               <div className="space-y-4">
-                <motion.div 
+                <motion.div
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
@@ -528,25 +527,33 @@ export default function Portfolio() {
                     {personalInfo.email}
                   </a>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
                   <Linkedin size={20} className="text-signal-blue" />
-                  <a href={personalInfo.social.linkedin} target="_blank" rel="noopener noreferrer" 
-                     className="hover:text-signal-blue transition-colors">
+                  <a
+                    href={personalInfo.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-signal-blue transition-colors"
+                  >
                     LinkedIn Profile
                   </a>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
                   <Github size={20} className="text-signal-blue" />
-                  <a href={personalInfo.social.github} target="_blank" rel="noopener noreferrer"
-                     className="hover:text-signal-blue transition-colors">
+                  <a
+                    href={personalInfo.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-signal-blue transition-colors"
+                  >
                     GitHub Profile
                   </a>
                 </motion.div>
@@ -561,59 +568,121 @@ export default function Portfolio() {
             >
               <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-signal-blue/50 transition-all duration-300">
                 <CardContent className="p-6">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2">
-                        Name
-                      </label>
-                      <Input
-                        id="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20"
-                        placeholder="Your name"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2">
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20"
-                        placeholder="your.email@example.com"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2">
-                        Message
-                      </label>
-                      <Textarea
-                        id="message"
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20 min-h-[120px]"
-                        placeholder="Your message..."
-                        required
-                      />
-                    </div>
-                    
-                    <Button 
-                      type="submit"
-                      className="w-full bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray py-3 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  {/* Success state */}
+                  {fsState.succeeded ? (
+                    <motion.div
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="space-y-3 text-center"
                     >
-                      <Mail className="mr-2 h-4 w-4" />
-                      Send Message
-                    </Button>
-                  </form>
+                      <h3 className="text-2xl font-bold">🎉 Message sent!</h3>
+                      <p className="text-stone">
+                        Thanks for reaching out — I’ll get back to you ASAP. Meanwhile, feel free to stalk my{' '}
+                        <a
+                          href={personalInfo.social.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:text-signal-blue"
+                        >
+                          GitHub
+                        </a>{' '}
+                        or{' '}
+                        <a
+                          href={personalInfo.social.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:text-signal-blue"
+                        >
+                          LinkedIn
+                        </a>
+                        . You rock 🤘
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <form
+                      onSubmit={(e) => {
+                        // Let Formspree do its thing™
+                        fsHandleSubmit(e);
+                      }}
+                      className="space-y-6"
+                    >
+                      {/* Optional subject line for your inbox */}
+                      <input type="hidden" name="_subject" value="New contact form submission 🚀" />
+                      {/* Optional honeypot */}
+                      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2"
+                        >
+                          Name
+                        </label>
+                        <Input
+                          id="name"
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20"
+                          placeholder="Your name"
+                          required
+                          aria-required="true"
+                        />
+                        <ValidationError prefix="Name" field="name" errors={fsState.errors} />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2"
+                        >
+                          Email
+                        </label>
+                        <Input
+                          id="email"
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20"
+                          placeholder="your.email@example.com"
+                          required
+                          aria-required="true"
+                        />
+                        <ValidationError prefix="Email" field="email" errors={fsState.errors} />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2"
+                        >
+                          Message
+                        </label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20 min-h-[120px]"
+                          placeholder="Your message..."
+                          required
+                          aria-required="true"
+                        />
+                        <ValidationError prefix="Message" field="message" errors={fsState.errors} />
+                      </div>
+
+                      <Button
+                        type="submit"
+                        disabled={fsState.submitting}
+                        className="w-full bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray py-3 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-70"
+                      >
+                        <Mail className="mr-2 h-4 w-4" />
+                        {fsState.submitting ? 'Sending...' : 'Send Message'}
+                      </Button>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
