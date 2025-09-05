@@ -78,21 +78,23 @@ export default function Portfolio() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-cloud-gray/90 dark:bg-charcoal/90 backdrop-blur-md border-b border-stone/30 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
           <div className="flex justify-between items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-3 min-w-0 flex-1"
             >
-              <div className="w-8 h-8 bg-signal-blue rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-signal-blue rounded-lg flex items-center justify-center flex-shrink-0">
                 <Terminal className="w-4 h-4 text-cloud-gray" />
               </div>
-              <h1 className="text-xl font-bold text-charcoal dark:text-cloud-gray">{personalInfo.name}</h1>
+              <h1 className="text-lg sm:text-xl font-bold text-charcoal dark:text-cloud-gray truncate">{personalInfo.name}</h1>
             </motion.div>
 
-            <div className="flex items-center space-x-4">
-              <CurrentTime />
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <div className="hidden sm:block">
+                <CurrentTime />
+              </div>
               <ThemeToggle />
 
               {/* Mobile menu button */}
@@ -112,7 +114,7 @@ export default function Portfolio() {
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-stone hover:text-signal-blue transition-colors duration-300 font-medium"
+                    className="text-stone hover:text-signal-blue transition-colors duration-300 font-medium whitespace-nowrap"
                   >
                     {item}
                   </button>
@@ -143,6 +145,9 @@ export default function Portfolio() {
                   </button>
                 ))}
               </div>
+              <div className="sm:hidden mt-4 pt-3 border-t border-stone/20">
+                <CurrentTime />
+              </div>
             </motion.div>
           )}
         </div>
@@ -151,8 +156,8 @@ export default function Portfolio() {
       <FloatingNav />
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative px-4 pt-20">
-        <div className="max-w-7xl mx-auto">
+      <section id="hero" className="min-h-screen flex items-center justify-center relative px-3 sm:px-4 pt-20">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -167,7 +172,7 @@ export default function Portfolio() {
             >
               <Badge className="bg-signal-blue/20 text-signal-blue border-signal-blue/30 mb-4">
                 <Sparkles className="w-3 h-3 mr-1" />
-                Available for opportunities
+                <span className="break-words">Available for opportunities</span>
               </Badge>
             </motion.div>
 
@@ -175,7 +180,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-cloud-gray mb-4"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words"
             >
               {personalInfo.name}
             </motion.h1>
@@ -184,7 +189,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl text-signal-blue mb-6 font-semibold"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-signal-blue mb-6 font-semibold break-words"
             >
               {personalInfo.title}
             </motion.h2>
@@ -193,7 +198,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 text-stone dark:text-stone"
+              className="text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 text-stone dark:text-stone break-words"
             >
               {personalInfo.bio}
             </motion.p>
@@ -208,13 +213,13 @@ export default function Portfolio() {
                 <Button
                   ref={getInTouchRef}
                   onClick={handleGetInTouchClick}
-                  className="bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray px-6 sm:px-8 py-3 text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto"
                 >
                   Get In Touch
                 </Button>
               </motion.div>
 
-              <div ref={downloadResumeRef} onClick={handleDownloadResumeClick}>
+              <div ref={downloadResumeRef} onClick={handleDownloadResumeClick} className="w-full sm:w-auto">
                 <DownloadResume />
               </div>
             </motion.div>
@@ -223,7 +228,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex justify-center space-x-6"
+              className="flex justify-center space-x-4 sm:space-x-6"
             >
               {Object.entries(personalInfo.social).map(([platform, url]) => {
                 const icons = {
@@ -242,7 +247,7 @@ export default function Portfolio() {
                     rel={platform !== 'email' ? 'noopener noreferrer' : undefined}
                     className="text-stone hover:text-signal-blue transition-all duration-300 transform hover:scale-110"
                   >
-                    <Icon size={24} />
+                    <Icon size={20} className="sm:w-6 sm:h-6" />
                   </a>
                 );
               })}
@@ -269,28 +274,28 @@ export default function Portfolio() {
             }}
             className="p-2 rounded-full bg-signal-blue/10 backdrop-blur-sm border border-signal-blue/30 hover:bg-signal-blue/20 transition-colors"
           >
-            <ChevronDown size={28} className="text-signal-blue" />
+            <ChevronDown size={24} className="sm:w-7 sm:h-7 text-signal-blue" />
           </motion.div>
         </motion.button>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4">
+      <section id="about" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
               About <span className="text-signal-blue">Me</span>
             </h2>
-            <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -300,10 +305,10 @@ export default function Portfolio() {
               <div className="relative">
                 <div className="absolute inset-0 bg-signal-blue/10 rounded-2xl blur-xl" />
                 <Card className="relative bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30">
-                  <CardContent className="p-8">
+                  <CardContent className="p-4 sm:p-6 lg:p-8">
                     <div className="flex items-center space-x-4 mb-6">
-                      <div className="relative">
-                        <div className="w-16 h-16 bg-signal-blue rounded-full p-0.5">
+                      <div className="relative flex-shrink-0">
+                        <div className="w-12 sm:w-16 h-12 sm:h-16 bg-signal-blue rounded-full p-0.5">
                           <Image
                             src={personalInfo.avatar}
                             alt={personalInfo.name}
@@ -312,29 +317,29 @@ export default function Portfolio() {
                             className="w-full h-full rounded-full object-cover"
                           />
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-cloud-gray dark:border-charcoal" />
+                        <div className="absolute -bottom-1 -right-1 w-4 sm:w-5 h-4 sm:h-5 bg-green-500 rounded-full border-2 border-cloud-gray dark:border-charcoal" />
                       </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-charcoal dark:text-cloud-gray">{personalInfo.name}</h3>
-                        <p className="text-signal-blue">{personalInfo.title}</p>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-lg sm:text-xl font-bold text-charcoal dark:text-cloud-gray break-words">{personalInfo.name}</h3>
+                        <p className="text-signal-blue break-words">{personalInfo.title}</p>
                       </div>
                     </div>
 
-                    <p className="text-charcoal dark:text-stone leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-charcoal dark:text-stone leading-relaxed mb-6 break-words">
                       I&apos;m a dedicated Computer Engineering student with an exceptional academic record,
                       placing me in the top percentile of my cohort. My academic excellence is complemented
                       by a strong, practical command of programming languages like Java, focusing on
                       object-oriented and multithreading capabilities.
                     </p>
 
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                       <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4 text-signal-blue" />
-                        <span>{personalInfo.location}</span>
+                        <MapPin className="w-4 h-4 text-signal-blue flex-shrink-0" />
+                        <span className="break-words">{personalInfo.location}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4 text-signal-blue" />
-                        <span>Available Now</span>
+                        <Calendar className="w-4 h-4 text-signal-blue flex-shrink-0" />
+                        <span className="break-words">Available Now</span>
                       </div>
                     </div>
                   </CardContent>
@@ -347,6 +352,7 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="overflow-hidden"
             >
               <CodeBlock code={codeSnippets.about} />
             </motion.div>
@@ -355,22 +361,22 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 bg-stone/5 dark:bg-charcoal/50">
+      <section id="skills" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-stone/5 dark:bg-charcoal/50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
               Skills & <span className="text-signal-blue">Expertise</span>
             </h2>
-            <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             {Object.entries(skills).map(([category, skillList], categoryIndex) => (
               <div key={category}>
                 <motion.h3
@@ -378,13 +384,13 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                   viewport={{ once: true }}
-                  className="text-2xl font-bold text-charcoal dark:text-cloud-gray mb-6 capitalize flex items-center"
+                  className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray mb-4 sm:mb-6 capitalize flex items-center break-words"
                 >
-                  <Code2 className="w-6 h-6 mr-3 text-signal-blue" />
+                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-signal-blue flex-shrink-0" />
                   {category.replace(/([A-Z])/g, ' $1').trim()}
                 </motion.h3>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {skillList.map((skill, index) => (
                     <SkillCard
                       key={skill.name}
@@ -402,24 +408,24 @@ export default function Portfolio() {
       </section>
 
       {/* Resume Timeline Section */}
-      <section id="experience" className="py-20 px-4" data-resume-content>
+      <section id="experience" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4" data-resume-content>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
               My <span className="text-signal-blue">Journey</span>
             </h2>
-            <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
 
-          <div id="resume-content" className="relative space-y-12">
+          <div id="resume-content" className="relative space-y-8 sm:space-y-12 overflow-hidden">
             {/* Education Timeline */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {education.map((edu, index) => (
                 <TimelineItem
                   key={index}
@@ -436,7 +442,7 @@ export default function Portfolio() {
             </div>
 
             {/* Experience Timeline */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {experience.map((exp, index) => (
                 <TimelineItem
                   key={index}
@@ -455,22 +461,22 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-stone/5 dark:bg-charcoal/50">
+      <section id="projects" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-stone/5 dark:bg-charcoal/50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
               Featured <span className="text-signal-blue">Projects</span>
             </h2>
-            <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {projects.map((project, index) => (
               <ProjectCard
                 key={project.title}
@@ -489,41 +495,41 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
+      <section id="contact" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
               Let&apos;s <span className="text-signal-blue">Connect</span>
             </h2>
-            <div className="w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-charcoal dark:text-cloud-gray mb-6">Let&apos;s Work Together</h3>
-              <p className="text-lg mb-8 leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray mb-4 sm:mb-6 break-words">Let&apos;s Work Together</h3>
+              <p className="text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed break-words">
                 I&apos;m always interested in new opportunities and collaborations.
                 Whether you have a project in mind or just want to connect, I&apos;d love to hear from you.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <motion.div
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
-                  <Mail size={20} className="text-signal-blue" />
-                  <a href={`mailto:${personalInfo.email}`} className="hover:text-signal-blue transition-colors">
+                  <Mail size={18} className="sm:w-5 sm:h-5 text-signal-blue flex-shrink-0" />
+                  <a href={`mailto:${personalInfo.email}`} className="hover:text-signal-blue transition-colors break-all text-sm sm:text-base">
                     {personalInfo.email}
                   </a>
                 </motion.div>
@@ -532,12 +538,12 @@ export default function Portfolio() {
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
-                  <Linkedin size={20} className="text-signal-blue" />
+                  <Linkedin size={18} className="sm:w-5 sm:h-5 text-signal-blue flex-shrink-0" />
                   <a
                     href={personalInfo.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-signal-blue transition-colors"
+                    className="hover:text-signal-blue transition-colors break-words text-sm sm:text-base"
                   >
                     LinkedIn Profile
                   </a>
@@ -547,12 +553,12 @@ export default function Portfolio() {
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
-                  <Github size={20} className="text-signal-blue" />
+                  <Github size={18} className="sm:w-5 sm:h-5 text-signal-blue flex-shrink-0" />
                   <a
                     href={personalInfo.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-signal-blue transition-colors"
+                    className="hover:text-signal-blue transition-colors break-words text-sm sm:text-base"
                   >
                     GitHub Profile
                   </a>
@@ -567,7 +573,7 @@ export default function Portfolio() {
               viewport={{ once: true }}
             >
               <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-signal-blue/50 transition-all duration-300">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   {/* Success state */}
                   {fsState.succeeded ? (
                     <motion.div
@@ -575,14 +581,14 @@ export default function Portfolio() {
                       animate={{ opacity: 1, y: 0 }}
                       className="space-y-3 text-center"
                     >
-                      <h3 className="text-2xl font-bold">🎉 Message sent!</h3>
-                      <p className="text-stone">
-                        Thanks for reaching out — I’ll get back to you ASAP. Meanwhile, feel free to stalk my{' '}
+                      <h3 className="text-xl sm:text-2xl font-bold break-words">🎉 Message sent!</h3>
+                      <p className="text-sm sm:text-base text-stone break-words">
+                        Thanks for reaching out — I&apos;ll get back to you ASAP. Meanwhile, feel free to stalk my{' '}
                         <a
                           href={personalInfo.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline hover:text-signal-blue"
+                          className="underline hover:text-signal-blue break-all"
                         >
                           GitHub
                         </a>{' '}
@@ -591,7 +597,7 @@ export default function Portfolio() {
                           href={personalInfo.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline hover:text-signal-blue"
+                          className="underline hover:text-signal-blue break-all"
                         >
                           LinkedIn
                         </a>
@@ -604,7 +610,7 @@ export default function Portfolio() {
                         // Let Formspree do its thing™
                         fsHandleSubmit(e);
                       }}
-                      className="space-y-6"
+                      className="space-y-4 sm:space-y-6"
                     >
                       {/* Optional subject line for your inbox */}
                       <input type="hidden" name="_subject" value="New contact form submission 🚀" />
@@ -665,7 +671,7 @@ export default function Portfolio() {
                           name="message"
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20 min-h-[120px]"
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20 min-h-[100px] sm:min-h-[120px]"
                           placeholder="Your message..."
                           required
                           aria-required="true"
@@ -691,18 +697,23 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-stone/30 bg-stone/5 dark:bg-charcoal/50">
+      <footer className="py-6 sm:py-8 px-3 sm:px-4 border-t border-stone/30 bg-stone/5 dark:bg-charcoal/50">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-signal-blue rounded-md flex items-center justify-center">
+              <div className="w-6 h-6 bg-signal-blue rounded-md flex items-center justify-center flex-shrink-0">
                 <Terminal className="w-3 h-3 text-cloud-gray" />
               </div>
-              <p className="text-stone">
+              <p className="text-sm sm:text-base text-stone break-words text-center md:text-left">
                 © 2025 {personalInfo.name}. Crafted with ❤️ and lots of ☕
               </p>
             </div>
-            <CurrentTime />
+            <div className="md:hidden sm:block">
+              <CurrentTime />
+            </div>
+            <div className="hidden md:block">
+              <CurrentTime />
+            </div>
           </div>
         </div>
       </footer>
