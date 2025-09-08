@@ -77,7 +77,7 @@ export const projects = [
     description: "Developed a versatile RESTful API using Python and Flask to provide real-time AI-powered services, including text generation and summarization, powered by the research model.",
     image: "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600",
     technologies: ["Python", "Flask", "REST API", "Research", "AI/ML"],
-    github: "https://github.com",
+    github: "https://github.com/marmik-joshi907/NeuraAPI",
     demo: "https://demo.com",
     featured: true
   },
