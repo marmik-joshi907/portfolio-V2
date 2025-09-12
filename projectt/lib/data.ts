@@ -120,9 +120,9 @@ class SoftwareEngineer {
     this.location = "Ahmedabad, India";
     this.interests = [
       "Full-stack Development",
-      "AI/ML Technologies", 
+      "DSA", 
       "System Design",
-      "Open Source"
+      "Gen AI"
     ];
   }
   
