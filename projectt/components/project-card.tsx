@@ -50,14 +50,18 @@ export function ProjectCard({
           
           <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {github && (
+              <a href={github} target="_blank" rel="noopener noreferrer">
               <Button size="sm" variant="secondary" className="bg-stone/20 backdrop-blur-sm border-stone/30">
                 <Github className="h-4 w-4" />
               </Button>
+              </a>
             )}
             {demo && (
+              <a href={demo} target="_blank" rel="noopener noreferrer">
               <Button size="sm" variant="secondary" className="bg-stone/20 backdrop-blur-sm border-stone/30">
                 <ExternalLink className="h-4 w-4" />
               </Button>
+              </a>
             )}
           </div>
         </div>
@@ -92,16 +96,20 @@ export function ProjectCard({
 
           <div className="flex space-x-3">
             {github && (
+              <a href={github} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="border-stone hover:border-signal-blue hover:text-signal-blue">
                 <Github className="mr-2 h-4 w-4" />
                 Code
               </Button>
+              </a>
             )}
             {demo && (
+              <a href={demo} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="border-stone hover:border-signal-blue hover:text-signal-blue">
                 <Eye className="mr-2 h-4 w-4" />
                 Demo
               </Button>
+              </a>
             )}
           </div>
         </CardContent>
