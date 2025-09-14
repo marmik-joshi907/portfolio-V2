@@ -172,10 +172,12 @@ export default function Portfolio() {
               onClick={() => scrollToSection('contact')}
               aria-label="Jump to Lets Connect"
             >
+              <a href="#contact" className="inline-block">
               <Badge className="bg-signal-blue/20 text-signal-blue border-signal-blue/30 mb-4">
                 <Sparkles className="w-3 h-3 mr-1" />
                 <span className="break-words">Available for opportunities</span>
               </Badge>
+              </a>
             </motion.div>
 
             <motion.h1
