@@ -169,6 +169,8 @@ export default function Portfolio() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6"
+              onClick={() => scrollToSection('contact')}
+              aria-label="Jump to Lets Connect"
             >
               <Badge className="bg-signal-blue/20 text-signal-blue border-signal-blue/30 mb-4">
                 <Sparkles className="w-3 h-3 mr-1" />
