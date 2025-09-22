@@ -26,10 +26,7 @@ It showcases my projects, skills, and journey as a **Full Stack Developer & Java
 
 ---
 
-## 📸 Preview
-
-![Portfolio Screenshot](https://raw.githubusercontent.com/marmik-joshi907/marmik-joshi907/main/assets/portfolio-preview.png)  
-*(Add screenshot of your portfolio here if available)*  
+ 
 
 ---
 
