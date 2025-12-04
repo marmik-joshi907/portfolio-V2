@@ -36,7 +36,7 @@ export function ProjectCard({
       viewport={{ once: true }}
       className="group"
     >
-      <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-signal-blue/50 transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-signal-blue/10">
+      <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-electric-violet/50 transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-electric-violet/10">
         <div className="relative overflow-hidden">
           <div className="aspect-[4/3] relative h-48">
             <Image
@@ -68,11 +68,11 @@ export function ProjectCard({
 
         <CardContent className="p-4">
           <div className="flex justify-between items-start mb-3">
-            <h3 className="text-lg font-bold text-charcoal dark:text-cloud-gray group-hover:text-signal-blue transition-colors">
+            <h3 className="text-lg font-bold text-charcoal dark:text-cloud-gray group-hover:text-electric-violet transition-colors">
               {title}
             </h3>
             {featured && (
-              <Badge className="bg-signal-blue text-cloud-gray border-0">
+              <Badge className="bg-electric-violet text-cloud-gray border-0">
                 Featured
               </Badge>
             )}
@@ -87,7 +87,7 @@ export function ProjectCard({
               <Badge 
                 key={tech} 
                 variant="outline" 
-                className="border-signal-blue/30 text-signal-blue bg-signal-blue/10 hover:bg-signal-blue/20 transition-colors text-xs"
+                className="border-electric-violet/30 text-electric-violet bg-electric-violet/10 hover:bg-electric-violet/20 transition-colors text-xs"
               >
                 {tech}
               </Badge>

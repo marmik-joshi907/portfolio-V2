@@ -16,7 +16,7 @@ export function DownloadResume() {
     >
       <Button
         onClick={openResume}
-        className="bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+        className="bg-gradient-to-r from-electric-violet to-cyber-cyan hover:opacity-90 text-cloud-gray px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
       >
         <Download className="mr-2 h-4 w-4" />
         Download Resume

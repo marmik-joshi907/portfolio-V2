@@ -71,9 +71,9 @@ export default function Portfolio() {
     <div className="min-h-screen bg-cloud-gray dark:bg-charcoal text-charcoal dark:text-cloud-gray relative overflow-x-hidden">
       {/* Animated background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-signal-blue/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-signal-blue/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-signal-blue/5 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-electric-violet/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-electric-violet/5 rounded-full blur-3xl" />
       </div>
 
       {/* Navigation */}
@@ -85,7 +85,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center space-x-3 min-w-0 flex-1"
             >
-              <div className="w-8 h-8 bg-signal-blue rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-gradient-to-br from-electric-violet to-cyber-cyan rounded-lg flex items-center justify-center flex-shrink-0">
                 <Terminal className="w-4 h-4 text-cloud-gray" />
               </div>
               <h1 className="text-lg sm:text-xl font-bold text-charcoal dark:text-cloud-gray truncate">{personalInfo.name}</h1>
@@ -114,7 +114,7 @@ export default function Portfolio() {
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-stone hover:text-signal-blue transition-colors duration-300 font-medium whitespace-nowrap"
+                    className="text-stone hover:text-electric-violet transition-colors duration-300 font-medium whitespace-nowrap"
                   >
                     {item}
                   </button>
@@ -139,7 +139,7 @@ export default function Portfolio() {
                       scrollToSection(item.toLowerCase());
                       setIsMobileMenuOpen(false);
                     }}
-                    className="text-left text-stone hover:text-signal-blue transition-colors duration-300 font-medium py-2"
+                    className="text-left text-stone hover:text-electric-violet transition-colors duration-300 font-medium py-2"
                   >
                     {item}
                   </button>
@@ -156,27 +156,28 @@ export default function Portfolio() {
       <FloatingNav />
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative px-3 sm:px-4 pt-20">
-        <div className="max-w-7xl mx-auto w-full">
+      <section id="hero" className="min-h-screen flex items-center justify-center relative px-3 sm:px-4 pt-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-left order-2 lg:order-1"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6"
+              className="mb-6 inline-block"
               onClick={() => scrollToSection('contact')}
-              aria-label="Jump to Lets Connect"
             >
               <a href="#contact" className="inline-block">
-              <Badge className="bg-signal-blue/20 text-signal-blue border-signal-blue/30 mb-4">
-                <Sparkles className="w-3 h-3 mr-1" />
-                <span className="break-words">Available for opportunities</span>
-              </Badge>
+                <Badge className="bg-electric-violet/10 text-electric-violet border-electric-violet/20 hover:bg-electric-violet/20 transition-colors px-4 py-2 text-sm">
+                  <Sparkles className="w-4 h-4 mr-2 text-cyber-cyan" />
+                  <span className="bg-gradient-to-r from-electric-violet to-cyber-cyan bg-clip-text text-transparent font-semibold">
+                    Available for opportunities
+                  </span>
+                </Badge>
               </a>
             </motion.div>
 
@@ -184,16 +185,19 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-cloud-gray mb-6 leading-tight"
             >
-              {personalInfo.name}
+              Hi, I'm <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">
+                {personalInfo.name}
+              </span>
             </motion.h1>
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-signal-blue mb-6 font-semibold break-words"
+              className="text-xl sm:text-2xl md:text-3xl text-stone mb-8 font-medium"
             >
               {personalInfo.title}
             </motion.h2>
@@ -202,7 +206,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 text-stone dark:text-stone break-words"
+              className="text-base sm:text-lg md:text-xl leading-relaxed text-stone/80 dark:text-stone max-w-xl mb-10"
             >
               {personalInfo.bio}
             </motion.p>
@@ -211,13 +215,13 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8"
+              className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-10"
             >
-              <motion.div whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.05 }}>
+              <motion.div whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.05 }} className="w-full sm:w-auto">
                 <Button
                   ref={getInTouchRef}
                   onClick={handleGetInTouchClick}
-                  className="bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray px-6 sm:px-8 py-3 text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto"
+                  className="bg-gradient-to-r from-electric-violet to-cyber-cyan hover:opacity-90 text-white px-8 py-6 text-lg rounded-full shadow-lg shadow-electric-violet/25 w-full sm:w-auto transition-all duration-300"
                 >
                   Get In Touch
                 </Button>
@@ -232,7 +236,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex justify-center space-x-4 sm:space-x-6"
+              className="flex justify-start space-x-6"
             >
               {Object.entries(personalInfo.social).map(([platform, url]) => {
                 const icons = {
@@ -249,13 +253,69 @@ export default function Portfolio() {
                     href={url}
                     target={platform !== 'email' ? '_blank' : undefined}
                     rel={platform !== 'email' ? 'noopener noreferrer' : undefined}
-                    className="text-stone hover:text-signal-blue transition-all duration-300 transform hover:scale-110"
+                    className="text-stone hover:text-electric-violet transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
                   >
-                    <Icon size={20} className="sm:w-6 sm:h-6" />
+                    <Icon size={24} />
                   </a>
                 );
               })}
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative order-1 lg:order-2 flex justify-center"
+          >
+            <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[500px] md:h-[500px]">
+              {/* Decorative blobs */}
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-electric-violet/20 to-cyber-cyan/20 rounded-full blur-3xl animate-pulse" />
+              
+              <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl shadow-electric-violet/20 rotate-3 hover:rotate-0 transition-all duration-500">
+                <Image
+                  src="/hero-image.jpg"
+                  alt={personalInfo.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent" />
+              </div>
+
+              {/* Floating badges */}
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-6 -left-6 bg-white dark:bg-charcoal p-4 rounded-xl shadow-xl border border-stone/10"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-electric-violet/10 rounded-lg">
+                    <Code2 className="w-6 h-6 text-electric-violet" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-stone">Focus</p>
+                    <p className="font-bold text-charcoal dark:text-cloud-gray">Full Stack</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -top-6 -right-6 bg-white dark:bg-charcoal p-4 rounded-xl shadow-xl border border-stone/10"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-cyber-cyan/10 rounded-lg">
+                    <Sparkles className="w-6 h-6 text-cyber-cyan" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-stone">Experience</p>
+                    <p className="font-bold text-charcoal dark:text-cloud-gray">Creative Dev</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
@@ -264,21 +324,20 @@ export default function Portfolio() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
           onClick={() => scrollToSection('about')}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
         >
           <motion.div
             animate={{
               y: [0, -8, 0],
-              scale: [1, 1.1, 1],
             }}
             transition={{
               duration: 2,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="p-2 rounded-full bg-signal-blue/10 backdrop-blur-sm border border-signal-blue/30 hover:bg-signal-blue/20 transition-colors"
+            className="p-2"
           >
-            <ChevronDown size={24} className="sm:w-7 sm:h-7 text-signal-blue" />
+            <ChevronDown size={32} className="text-stone/50 hover:text-electric-violet transition-colors" />
           </motion.div>
         </motion.button>
       </section>
@@ -294,9 +353,9 @@ export default function Portfolio() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              About <span className="text-signal-blue">Me</span>
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Me</span>
             </h2>
-            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -307,12 +366,12 @@ export default function Portfolio() {
               viewport={{ once: true }}
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-signal-blue/10 rounded-2xl blur-xl" />
+                <div className="absolute inset-0 bg-electric-violet/10 rounded-2xl blur-xl" />
                 <Card className="relative bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30">
                   <CardContent className="p-4 sm:p-6 lg:p-8">
                     <div className="flex items-center space-x-4 mb-6">
                       <div className="relative flex-shrink-0">
-                        <div className="w-12 sm:w-16 h-12 sm:h-16 bg-signal-blue rounded-full p-0.5">
+                        <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-electric-violet to-cyber-cyan rounded-full p-0.5">
                           <Image
                             src={personalInfo.avatar}
                             alt={personalInfo.name}
@@ -325,7 +384,7 @@ export default function Portfolio() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <h3 className="text-lg sm:text-xl font-bold text-charcoal dark:text-cloud-gray break-words">{personalInfo.name}</h3>
-                        <p className="text-signal-blue break-words">{personalInfo.title}</p>
+                        <p className="text-electric-violet break-words">{personalInfo.title}</p>
                       </div>
                     </div>
 
@@ -338,11 +397,11 @@ export default function Portfolio() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                       <div className="flex items-center space-x-2">
-                        <MapPin className="w-4 h-4 text-signal-blue flex-shrink-0" />
+                        <MapPin className="w-4 h-4 text-cyber-cyan flex-shrink-0" />
                         <span className="break-words">{personalInfo.location}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4 text-signal-blue flex-shrink-0" />
+                        <Calendar className="w-4 h-4 text-cyber-cyan flex-shrink-0" />
                         <span className="break-words">Available Now</span>
                       </div>
                     </div>
@@ -375,9 +434,9 @@ export default function Portfolio() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              Skills & <span className="text-signal-blue">Expertise</span>
+              Skills & <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Expertise</span>
             </h2>
-            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
           </motion.div>
 
           <div className="space-y-8 sm:space-y-12">
@@ -390,7 +449,7 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                   className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray mb-4 sm:mb-6 capitalize flex items-center break-words"
                 >
-                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-signal-blue flex-shrink-0" />
+                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-electric-violet flex-shrink-0" />
                   {category.replace(/([A-Z])/g, ' $1').trim()}
                 </motion.h3>
 
@@ -422,9 +481,9 @@ export default function Portfolio() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              My <span className="text-signal-blue">Journey</span>
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Journey</span>
             </h2>
-            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
           </motion.div>
 
           <div id="resume-content" className="relative space-y-8 sm:space-y-12 overflow-hidden">
@@ -475,9 +534,9 @@ export default function Portfolio() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              Featured <span className="text-signal-blue">Projects</span>
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Projects</span>
             </h2>
-            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -509,9 +568,9 @@ export default function Portfolio() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              Let&apos;s <span className="text-signal-blue">Connect</span>
+              Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Connect</span>
             </h2>
-            <div className="w-16 sm:w-24 h-1 bg-signal-blue mx-auto rounded-full" />
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
@@ -532,8 +591,8 @@ export default function Portfolio() {
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
-                  <Mail size={18} className="sm:w-5 sm:h-5 text-signal-blue flex-shrink-0" />
-                  <a href={`mailto:${personalInfo.email}`} className="hover:text-signal-blue transition-colors break-all text-sm sm:text-base">
+                  <Mail size={18} className="sm:w-5 sm:h-5 text-electric-violet flex-shrink-0" />
+                  <a href={`mailto:${personalInfo.email}`} className="hover:text-electric-violet transition-colors break-all text-sm sm:text-base">
                     {personalInfo.email}
                   </a>
                 </motion.div>
@@ -542,12 +601,12 @@ export default function Portfolio() {
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
-                  <Linkedin size={18} className="sm:w-5 sm:h-5 text-signal-blue flex-shrink-0" />
+                  <Linkedin size={18} className="sm:w-5 sm:h-5 text-electric-violet flex-shrink-0" />
                   <a
                     href={personalInfo.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-signal-blue transition-colors break-words text-sm sm:text-base"
+                    className="hover:text-electric-violet transition-colors break-words text-sm sm:text-base"
                   >
                     LinkedIn Profile
                   </a>
@@ -557,12 +616,12 @@ export default function Portfolio() {
                   whileHover={{ x: 10 }}
                   className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
                 >
-                  <Github size={18} className="sm:w-5 sm:h-5 text-signal-blue flex-shrink-0" />
+                  <Github size={18} className="sm:w-5 sm:h-5 text-electric-violet flex-shrink-0" />
                   <a
                     href={personalInfo.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-signal-blue transition-colors break-words text-sm sm:text-base"
+                    className="hover:text-electric-violet transition-colors break-words text-sm sm:text-base"
                   >
                     GitHub Profile
                   </a>
@@ -576,7 +635,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-signal-blue/50 transition-all duration-300">
+              <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-electric-violet/50 transition-all duration-300">
                 <CardContent className="p-4 sm:p-6">
                   {/* Success state */}
                   {fsState.succeeded ? (
@@ -592,7 +651,7 @@ export default function Portfolio() {
                           href={personalInfo.social.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline hover:text-signal-blue break-all"
+                          className="underline hover:text-electric-violet break-all"
                         >
                           GitHub
                         </a>{' '}
@@ -601,7 +660,7 @@ export default function Portfolio() {
                           href={personalInfo.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline hover:text-signal-blue break-all"
+                          className="underline hover:text-electric-violet break-all"
                         >
                           LinkedIn
                         </a>
@@ -634,7 +693,7 @@ export default function Portfolio() {
                           name="name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20"
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-electric-violet focus:ring-electric-violet/20"
                           placeholder="Your name"
                           required
                           aria-required="true"
@@ -655,7 +714,7 @@ export default function Portfolio() {
                           name="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20"
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-electric-violet focus:ring-electric-violet/20"
                           placeholder="your.email@example.com"
                           required
                           aria-required="true"
@@ -675,7 +734,7 @@ export default function Portfolio() {
                           name="message"
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-signal-blue focus:ring-signal-blue/20 min-h-[100px] sm:min-h-[120px]"
+                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-electric-violet focus:ring-electric-violet/20 min-h-[100px] sm:min-h-[120px]"
                           placeholder="Your message..."
                           required
                           aria-required="true"
@@ -686,7 +745,7 @@ export default function Portfolio() {
                       <Button
                         type="submit"
                         disabled={fsState.submitting}
-                        className="w-full bg-signal-blue hover:bg-signal-blue/90 text-cloud-gray py-3 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-70"
+                        className="w-full bg-gradient-to-r from-electric-violet to-cyber-cyan hover:opacity-90 text-cloud-gray py-3 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-70"
                       >
                         <Mail className="mr-2 h-4 w-4" />
                         {fsState.submitting ? 'Sending...' : 'Send Message'}
@@ -705,7 +764,7 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-signal-blue rounded-md flex items-center justify-center flex-shrink-0">
+              <div className="w-6 h-6 bg-gradient-to-br from-electric-violet to-cyber-cyan rounded-md flex items-center justify-center flex-shrink-0">
                 <Terminal className="w-3 h-3 text-cloud-gray" />
               </div>
               <p className="text-sm sm:text-base text-stone break-words text-center md:text-left">

@@ -36,10 +36,10 @@ export function TimelineItem({
       className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6"
     >
       {/* Timeline Line - Hidden on mobile, visible on larger screens */}
-      <div className="hidden sm:block absolute left-4 top-8 w-px h-full bg-signal-blue/20" />
+      <div className="hidden sm:block absolute left-4 top-8 w-px h-full bg-electric-violet/20" />
       
       {/* Timeline Dot */}
-      <div className="flex-shrink-0 w-8 h-8 bg-signal-blue rounded-full flex items-center justify-center relative z-10">
+      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-electric-violet to-cyber-cyan rounded-full flex items-center justify-center relative z-10">
         <div className="w-3 h-3 bg-white rounded-full" />
       </div>
       
@@ -52,12 +52,12 @@ export function TimelineItem({
               <h3 className="text-lg sm:text-xl font-bold text-charcoal dark:text-cloud-gray break-words hyphens-auto">
                 {title}
               </h3>
-              <p className="text-signal-blue font-medium break-words hyphens-auto">
+              <p className="text-electric-violet font-medium break-words hyphens-auto">
                 {institution || company}
               </p>
             </div>
             <div className="flex-shrink-0">
-              <Badge className="bg-signal-blue/10 text-signal-blue border-signal-blue/30 text-xs sm:text-sm whitespace-nowrap">
+              <Badge className="bg-electric-violet/10 text-electric-violet border-electric-violet/30 text-xs sm:text-sm whitespace-nowrap">
                 {period}
               </Badge>
             </div>
@@ -85,7 +85,7 @@ export function TimelineItem({
             <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
               {(achievements || responsibilities)?.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <span className="text-signal-blue mt-1 flex-shrink-0 select-none">•</span>
+                  <span className="text-electric-violet mt-1 flex-shrink-0 select-none">•</span>
                   <span className="break-words hyphens-auto leading-relaxed">{item}</span>
                 </li>
               ))}

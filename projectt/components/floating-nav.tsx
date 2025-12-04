@@ -66,8 +66,8 @@ export function FloatingNav() {
                     onClick={() => scrollToSection(item.id)}
                     className={`relative p-2 rounded-full transition-all duration-300 ${
                       isActive 
-                        ? 'text-signal-blue bg-signal-blue/20' 
-                        : 'text-stone hover:text-signal-blue hover:bg-stone/10'
+                        ? 'text-electric-violet bg-electric-violet/20' 
+                        : 'text-stone hover:text-electric-violet hover:bg-stone/10'
                     }`}
                     title={item.label}
                   >
@@ -75,7 +75,7 @@ export function FloatingNav() {
                     {isActive && (
                       <motion.div
                         layoutId="activeIndicator"
-                        className="absolute inset-0 bg-signal-blue/20 rounded-full"
+                        className="absolute inset-0 bg-electric-violet/20 rounded-full"
                         initial={false}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />

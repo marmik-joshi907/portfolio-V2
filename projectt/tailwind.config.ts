@@ -23,11 +23,13 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      colors: {
-        'charcoal': '#1E2022',
-        'cloud-gray': '#F5F5F7', 
-        'signal-blue': '#007BFF',
-        'stone': '#D6D6D6',
+        colors: {
+        'charcoal': '#0F172A', // Darker, richer background
+        'cloud-gray': '#F8FAFC', // Crisper white
+        'electric-violet': '#7C3AED', // Vibrant Purple
+        'cyber-cyan': '#06B6D4', // Cyan accent
+        'signal-blue': '#7C3AED', // Mapping old class to new color for backward compatibility initially
+        'stone': '#94A3B8',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
