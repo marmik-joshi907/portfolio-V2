@@ -295,7 +295,7 @@ export default function Portfolio() {
                   </div>
                   <div>
                     <p className="text-xs text-stone">Focus</p>
-                    <p className="font-bold text-charcoal dark:text-cloud-gray">Full Stack</p>
+                    <p className="font-bold text-charcoal dark:text-cloud-gray">DSA</p>
                   </div>
                 </div>
               </motion.div>

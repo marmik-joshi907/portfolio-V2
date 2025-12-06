@@ -4,7 +4,7 @@ export const personalInfo = {
   email: "marmikjoshi52@gmail.com",
   location: "Ahmedabad, Gujarat, India",
   bio: "High-achieving Computer Engineering student with exceptional 9.0 SPI, passionate about creating innovative solutions and contributing to impactful projects in the tech industry.",
-  avatar: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=400",
+  avatar: "hero-image.jpg",
   social: {
     github: "https://github.com/marmik-joshi907",
     linkedin: "https://www.linkedin.com/in/marmikjoshi/",
