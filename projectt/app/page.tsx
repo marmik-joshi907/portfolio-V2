@@ -746,7 +746,7 @@ export default function Portfolio() {
               </div>
 
               {/* Right Side: Form */}
-              <div classNme="p-6 sm:p-8 bg-[#1e1e1e]">
+              <div className="p-6 sm:p-8 bg-[#1e1e1e]">
                 {fsState.succeeded && !showBinaryPopup ? (
                     <motion.div
                       initial={{ opacity: 0 }}
