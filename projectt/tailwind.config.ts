@@ -24,7 +24,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
         colors: {
-        'charcoal': '#0F172A', // Darker, richer background
+        'charcoal': '#000000', // Pure black for dark mode
         'cloud-gray': '#F8FAFC', // Crisper white
         'electric-violet': '#7C3AED', // Vibrant Purple
         'cyber-cyan': '#06B6D4', // Cyan accent
@@ -144,6 +144,11 @@ const config: Config = {
             'box-shadow': '0 0 30px rgba(168, 85, 247, 0.4), 0 0 40px rgba(56, 189, 248, 0.2)',
           },
         },
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -154,6 +159,8 @@ const config: Config = {
         'scale-in': 'scale-in 0.6s ease-out',
         'gradient-shift': 'gradient-shift 3s ease infinite',
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+
       },
       backdropBlur: {
         xs: '2px',

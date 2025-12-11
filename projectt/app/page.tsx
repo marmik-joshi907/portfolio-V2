@@ -19,7 +19,13 @@ import { CodeBlock } from '@/components/code-block';
 import { SkillCard } from '@/components/skill-card';
 import { ProjectCard } from '@/components/project-card';
 import { TimelineItem } from '@/components/timeline-item';
-import { personalInfo, skills, education, experience, projects, codeSnippets } from '@/lib/data';
+import { CustomCursor } from '@/components/custom-cursor';
+import { SectionHeading } from '@/components/section-heading';
+import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
+import { BackgroundCode } from '@/components/background-code';
+import { personalInfo, skills, education, experience, projects, codeSnippets, cseCoreKnowledge, learning } from '@/lib/data';
+import { BinaryPopup } from '@/components/binary-popup';
+import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 // 🔌 Formspree
@@ -37,8 +43,30 @@ export default function Portfolio() {
   const [fsState, fsHandleSubmit] = useForm('mdklpplk');
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
+  const [showProjectPopup, setShowProjectPopup] = useState(false);
+  const [showBinaryPopup, setShowBinaryPopup] = useState(false);
   const getInTouchRef = useRef<HTMLButtonElement>(null);
   const downloadResumeRef = useRef<HTMLDivElement>(null);
+
+  const startShowcase = () => {
+    if (highlightIndex !== -1) return; // Already running
+    
+    setHighlightIndex(0);
+    scrollToSection('projects');
+    
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      currentIndex++;
+      if (currentIndex >= projects.length) {
+        clearInterval(interval);
+        setHighlightIndex(-1);
+        setTimeout(() => setShowProjectPopup(true), 500);
+      } else {
+        setHighlightIndex(currentIndex);
+      }
+    }, 3000);
+  };
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -76,7 +104,10 @@ export default function Portfolio() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-electric-violet/5 rounded-full blur-3xl" />
       </div>
 
+      <BackgroundCode />
+
       {/* Navigation */}
+      <CustomCursor />
       <nav className="fixed top-0 w-full bg-cloud-gray/90 dark:bg-charcoal/90 backdrop-blur-md border-b border-stone/30 z-40">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
           <div className="flex justify-between items-center">
@@ -426,18 +457,7 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section id="skills" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-stone/5 dark:bg-charcoal/50">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              Skills & <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Expertise</span>
-            </h2>
-            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
-          </motion.div>
+          <SectionHeading title="Skills &" highlight="Expertise" />
 
           <div className="space-y-8 sm:space-y-12">
             {Object.entries(skills).map(([category, skillList], categoryIndex) => (
@@ -447,13 +467,13 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                   viewport={{ once: true }}
-                  className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray mb-4 sm:mb-6 capitalize flex items-center break-words"
+                  className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray mb-6 flex items-center capitalize"
                 >
-                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-electric-violet flex-shrink-0" />
+                  <span className="w-2 h-8 bg-gradient-to-b from-electric-violet to-cyber-cyan mr-3 rounded-full" />
                   {category.replace(/([A-Z])/g, ' $1').trim()}
                 </motion.h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {skillList.map((skill, index) => (
                     <SkillCard
                       key={skill.name}
@@ -466,6 +486,46 @@ export default function Portfolio() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CSE Core Knowledge Section */}
+      <section id="cse-core" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading title="CSE Core" highlight="In-Depth" />
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+            {cseCoreKnowledge.map((subject, index) => (
+              <motion.div
+                key={subject}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="bg-white dark:bg-charcoal border border-stone/20 dark:border-stone/10 p-4 rounded-xl text-center shadow-sm hover:shadow-md hover:border-electric-violet/50 transition-all flex items-center justify-center min-h-[100px] group"
+              >
+                <span className="text-sm font-semibold text-stone group-hover:text-electric-violet transition-colors">
+                  {subject}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Learning Section */}
+      <section id="learning" className="py-12 sm:py-16 lg:py-20 bg-stone/5 dark:bg-charcoal/50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionHeading title="Currently" highlight="Learning" />
+          
+          <div className="mt-8">
+            <InfiniteMovingCards
+              items={learning}
+              direction="right"
+              speed="slow"
+            />
           </div>
         </div>
       </section>
@@ -526,18 +586,12 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section id="projects" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 bg-stone/5 dark:bg-charcoal/50">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Projects</span>
-            </h2>
-            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
-          </motion.div>
+          <SectionHeading 
+            title="Featured" 
+            highlight="Projects" 
+            onClick={startShowcase}
+            className="hover:scale-105 transition-transform duration-300 cursor-pointer"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {projects.map((project, index) => (
@@ -551,213 +605,231 @@ export default function Portfolio() {
                 demo={project.demo}
                 featured={project.featured}
                 index={index}
+                isHighlighted={index === highlightIndex}
               />
             ))}
           </div>
         </div>
+
+        {/* Project Selection Popup */}
+        {showProjectPopup && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white dark:bg-charcoal border border-electric-violet rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl shadow-electric-violet/20 relative"
+            >
+              <button 
+                onClick={() => setShowProjectPopup(false)}
+                className="absolute top-4 right-4 text-stone hover:text-charcoal dark:hover:text-white"
+              >
+                ✕
+              </button>
+              
+              <h3 className="text-2xl font-bold mb-2 text-center">Showcase Complete! 🚀</h3>
+              <p className="text-center text-stone mb-6">Which project caught your eye? Check out a demo:</p>
+              
+              <div className="space-y-3">
+                {projects.map((project) => (
+                  <div key={project.title} className="flex items-center justify-between p-3 rounded-lg bg-stone/5 border border-stone/10 hover:border-electric-violet/30 transition-colors">
+                    <span className="font-medium truncate pr-4">{project.title}</span>
+                    <a 
+                      href={project.demo} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-electric-violet/10 text-electric-violet rounded-md text-sm font-semibold hover:bg-electric-violet hover:text-white transition-all shrink-0"
+                    >
+                      View Demo
+                    </a>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-6 text-center">
+                <button
+                  onClick={() => setShowProjectPopup(false)}
+                  className="text-stone hover:text-electric-violet text-sm underline"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
+          <SectionHeading 
+            title="System" 
+            highlight="Override" 
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                const form = document.getElementById('terminal-form');
+                if (form) {
+                  form.scrollIntoView({ behavior: 'smooth' });
+                  // Trigger flicker
+                  const inputs = form.querySelectorAll('input, textarea');
+                  inputs.forEach((input: any) => {
+                    input.style.animation = 'none';
+                    setTimeout(() => {
+                      input.style.animation = 'pulse 0.1s infinite';
+                    }, 10);
+                  });
+                  // Stop after 2s if no interaction
+                  setTimeout(() => {
+                     inputs.forEach((input: any) => {
+                      input.style.animation = 'none';
+                    });
+                  }, 2000);
+                }
+              }
+            }}
+            className="hover:scale-105 transition-transform duration-300 cursor-pointer"
+          />
+
+          {/* Terminal Window */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
+            className="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-2xl border border-stone/20 font-mono"
+            id="terminal-form"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal dark:text-cloud-gray mb-4 break-words">
-              Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">Connect</span>
-            </h2>
-            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-electric-violet to-cyber-cyan mx-auto rounded-full" />
-          </motion.div>
+            {/* Terminal Header */}
+            <div className="bg-[#2d2d2d] px-4 py-3 flex items-center space-x-2 border-b border-black/50">
+              <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+              <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+              <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+              <div className="flex-1 text-center text-xs text-stone/50 font-mono">user@{personalInfo.name.toLowerCase().replace(/\s+/g, '')}: ~/contact-protocol</div>
+            </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray mb-4 sm:mb-6 break-words">Let&apos;s Work Together</h3>
-              <p className="text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed break-words">
-                I&apos;m always interested in new opportunities and collaborations.
-                Whether you have a project in mind or just want to connect, I&apos;d love to hear from you.
-              </p>
-
-              <div className="space-y-3 sm:space-y-4">
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
-                >
-                  <Mail size={18} className="sm:w-5 sm:h-5 text-electric-violet flex-shrink-0" />
-                  <a href={`mailto:${personalInfo.email}`} className="hover:text-electric-violet transition-colors break-all text-sm sm:text-base">
-                    {personalInfo.email}
-                  </a>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
-                >
-                  <Linkedin size={18} className="sm:w-5 sm:h-5 text-electric-violet flex-shrink-0" />
-                  <a
-                    href={personalInfo.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-electric-violet transition-colors break-words text-sm sm:text-base"
-                  >
-                    LinkedIn Profile
-                  </a>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-stone/10 dark:bg-charcoal/30 backdrop-blur-sm border border-stone/30"
-                >
-                  <Github size={18} className="sm:w-5 sm:h-5 text-electric-violet flex-shrink-0" />
-                  <a
-                    href={personalInfo.social.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-electric-violet transition-colors break-words text-sm sm:text-base"
-                  >
-                    GitHub Profile
-                  </a>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-electric-violet/50 transition-all duration-300">
-                <CardContent className="p-4 sm:p-6">
-                  {/* Success state */}
-                  {fsState.succeeded ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="space-y-3 text-center"
-                    >
-                      <h3 className="text-xl sm:text-2xl font-bold break-words">🎉 Message sent!</h3>
-                      <p className="text-sm sm:text-base text-stone break-words">
-                        Thanks for reaching out — I&apos;ll get back to you ASAP. Meanwhile, feel free to stalk my{' '}
-                        <a
-                          href={personalInfo.social.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline hover:text-electric-violet break-all"
-                        >
-                          GitHub
-                        </a>{' '}
-                        or{' '}
-                        <a
-                          href={personalInfo.social.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline hover:text-electric-violet break-all"
-                        >
-                          LinkedIn
+            <div className="grid lg:grid-cols-2">
+              {/* Left Side: Info */}
+              <div className="p-6 sm:p-8 border-r border-stone/10 bg-[#1e1e1e] text-stone/80">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-electric-violet font-bold mb-2">{'>'} PROJECTS_INFO</h3>
+                    <p className="text-sm leading-relaxed mb-4">
+                      Initiating handshake protocol... <br/>
+                      Warning: Heavy collaboration detected. <br/>
+                      Please provide project specifications or coffee coordinates.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-cyber-cyan font-bold mb-2">{'>'} CONTACT_CHANNELS</h3>
+                    <div className="space-y-3 text-sm">
+                       <div className="flex items-center space-x-3 group cursor-pointer hover:text-white transition-colors">
+                        <span className="text-stone/50">$</span>
+                        <a href={`mailto:${personalInfo.email}`} className="hover:underline decoration-electric-violet underline-offset-4">
+                          email: {personalInfo.email}
                         </a>
-                        . You rock 🤘
-                      </p>
-                    </motion.div>
-                  ) : (
-                    <form
-                      onSubmit={(e) => {
-                        // Let Formspree do its thing™
-                        fsHandleSubmit(e);
-                      }}
-                      className="space-y-4 sm:space-y-6"
+                      </div>
+                      <div className="flex items-center space-x-3 group cursor-pointer hover:text-white transition-colors">
+                        <span className="text-stone/50">$</span>
+                        <a href={personalInfo.social.linkedin} target="_blank" className="hover:underline decoration-electric-violet underline-offset-4">
+                          linkedin: user/{personalInfo.name.split(' ')[0].toLowerCase()}
+                        </a>
+                      </div>
+                      <div className="flex items-center space-x-3 group cursor-pointer hover:text-white transition-colors">
+                        <span className="text-stone/50">$</span>
+                        <a href={personalInfo.social.github} target="_blank" className="hover:underline decoration-electric-violet underline-offset-4">
+                          github: git/checkout
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Form */}
+              <div classNme="p-6 sm:p-8 bg-[#1e1e1e]">
+                {fsState.succeeded && !showBinaryPopup ? (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="h-full flex flex-col items-center justify-center text-center space-y-4"
                     >
-                      {/* Optional subject line for your inbox */}
-                      <input type="hidden" name="_subject" value="New contact form submission 🚀" />
-                      {/* Optional honeypot */}
-                      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+                      <div className="text-green-500 text-6xl">✓</div>
+                      <h3 className="text-2xl font-bold text-white">Message Transmitted</h3>
+                      <p className="text-stone/60 text-sm">Stand by for response...</p>
+                    </motion.div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      fsHandleSubmit(e).then(() => {
+                         setShowBinaryPopup(true);
+                      });
+                    }}
+                    className="space-y-5"
+                  >
+                    <div className="space-y-1">
+                      <label htmlFor="name" className="text-xs text-stone/50 uppercase tracking-wider pl-1">Name_Input</label>
+                      <Input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="bg-[#252525] border-transparent text-white placeholder-stone/30 focus:border-electric-violet/50 focus:ring-1 focus:ring-electric-violet/50 rounded-md h-12 font-mono"
+                        placeholder="_ enter name"
+                        required
+                      />
+                    </div>
 
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2"
-                        >
-                          Name
-                        </label>
-                        <Input
-                          id="name"
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-electric-violet focus:ring-electric-violet/20"
-                          placeholder="Your name"
-                          required
-                          aria-required="true"
-                        />
-                        <ValidationError prefix="Name" field="name" errors={fsState.errors} />
-                      </div>
+                    <div className="space-y-1">
+                      <label htmlFor="email" className="text-xs text-stone/50 uppercase tracking-wider pl-1">Email_Address</label>
+                      <Input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="bg-[#252525] border-transparent text-white placeholder-stone/30 focus:border-electric-violet/50 focus:ring-1 focus:ring-electric-violet/50 rounded-md h-12 font-mono"
+                        placeholder="_ enter email"
+                        required
+                      />
+                    </div>
 
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2"
-                        >
-                          Email
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-electric-violet focus:ring-electric-violet/20"
-                          placeholder="your.email@example.com"
-                          required
-                          aria-required="true"
-                        />
-                        <ValidationError prefix="Email" field="email" errors={fsState.errors} />
-                      </div>
+                    <div className="space-y-1">
+                      <label htmlFor="message" className="text-xs text-stone/50 uppercase tracking-wider pl-1">Message_Body</label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="bg-[#252525] border-transparent text-white placeholder-stone/30 focus:border-electric-violet/50 focus:ring-1 focus:ring-electric-violet/50 rounded-md min-h-[150px] font-mono resize-none"
+                        placeholder="_ enter message type..."
+                        required
+                      />
+                    </div>
 
-                      <div>
-                        <label
-                          htmlFor="message"
-                          className="block text-sm font-medium text-charcoal dark:text-cloud-gray mb-2"
-                        >
-                          Message
-                        </label>
-                        <Textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="bg-cloud-gray dark:bg-charcoal border-stone text-charcoal dark:text-cloud-gray placeholder-stone focus:border-electric-violet focus:ring-electric-violet/20 min-h-[100px] sm:min-h-[120px]"
-                          placeholder="Your message..."
-                          required
-                          aria-required="true"
-                        />
-                        <ValidationError prefix="Message" field="message" errors={fsState.errors} />
-                      </div>
-
-                      <Button
-                        type="submit"
-                        disabled={fsState.submitting}
-                        className="w-full bg-gradient-to-r from-electric-violet to-cyber-cyan hover:opacity-90 text-cloud-gray py-3 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-70"
-                      >
-                        <Mail className="mr-2 h-4 w-4" />
-                        {fsState.submitting ? 'Sending...' : 'Send Message'}
-                      </Button>
-                    </form>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
+                    <Button
+                      type="submit"
+                      disabled={fsState.submitting}
+                      className="w-full bg-electric-violet/10 hover:bg-electric-violet/20 text-electric-violet border border-electric-violet/50 py-6 font-mono uppercase tracking-widest transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                    >
+                      {fsState.submitting ? '[ TRANSMITTING... ]' : '[ EXECUTE_SEND ]'}
+                    </Button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {showBinaryPopup && (
+          <BinaryPopup 
+            onComplete={() => setShowBinaryPopup(false)} 
+          />
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
       <footer className="py-6 sm:py-8 px-3 sm:px-4 border-t border-stone/30 bg-stone/5 dark:bg-charcoal/50">

@@ -16,6 +16,7 @@ interface ProjectCardProps {
   demo?: string;
   featured?: boolean;
   index: number;
+  isHighlighted?: boolean;
 }
 
 export function ProjectCard({ 
@@ -26,7 +27,8 @@ export function ProjectCard({
   github, 
   demo, 
   featured = false,
-  index 
+  index,
+  isHighlighted 
 }: ProjectCardProps) {
   return (
     <motion.div
@@ -34,9 +36,9 @@ export function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="group"
+      className={`group ${isHighlighted ? 'z-20 scale-105' : ''}`}
     >
-      <Card className="bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border border-stone/30 hover:border-electric-violet/50 transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-electric-violet/10">
+      <Card className={`bg-stone/10 dark:bg-charcoal/50 backdrop-blur-sm border transition-all duration-500 overflow-hidden ${isHighlighted ? 'border-electric-violet ring-4 ring-electric-violet/50 shadow-[0_0_30px_rgba(124,58,237,0.5)]' : 'border-stone/30 hover:border-electric-violet/50 hover:shadow-2xl hover:shadow-electric-violet/10'}`}>
         <div className="relative overflow-hidden">
           <div className="aspect-[4/3] relative h-48">
             <Image

@@ -59,6 +59,11 @@
   
   html {
     scroll-behavior: smooth;
+    cursor: none !important;
+  }
+
+  body, a, button, input, textarea, select {
+    cursor: none !important;
   }
   
   /* Custom color classes */

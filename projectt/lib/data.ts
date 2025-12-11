@@ -13,6 +13,29 @@ export const personalInfo = {
   }
 };
 
+export const cseCoreKnowledge = [
+  "DBMS",
+  "Data Structures",
+  "Analysis & Design of Algorithm",
+  "Computer Networks",
+  "Operating Systems",
+  "Data Science",
+  "Computer Organization & Architecture",
+  "Digital Electronics",
+  "Theory Of Computation",
+  "Compiler Design",
+  "Programming for Problem Solving",
+  "Object Oriented Programming with Java"
+];
+
+export const learning = [
+  "Quant",
+  "SQL",
+  "AWS", 
+  "Docker",
+  "Kubernetes"
+];
+
 export const skills = {
   programming: [
     { name: "Java", level: 90, category: "Backend" },
