@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const symbols = [
   '010101', '0xFF', 'O(n)', 'HTTP', '404', 'SELECT', 'FROM', 
@@ -9,7 +9,7 @@ const symbols = [
   'void', '// TODO', '<!-- -->', '=>', '===', '</>', '{}'
 ];
 
-export const BackgroundCode = () => {
+export const BackgroundCode = React.memo(() => {
   const [items, setItems] = useState<{ x: number; y: number; symbol: string; rotation: number; scale: number }[]>([]);
 
   useEffect(() => {
@@ -64,4 +64,7 @@ export const BackgroundCode = () => {
       ))}
     </div>
   );
-};
+});
+
+BackgroundCode.displayName = 'BackgroundCode';
+

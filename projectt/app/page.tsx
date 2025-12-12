@@ -24,9 +24,11 @@ import { SectionHeading } from '@/components/section-heading';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { BackgroundCode } from '@/components/background-code';
 import { personalInfo, skills, education, experience, projects, codeSnippets, cseCoreKnowledge, learning } from '@/lib/data';
-import { BinaryPopup } from '@/components/binary-popup';
-import { SkillPopup } from '@/components/skill-popup';
 import { AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const BinaryPopup = dynamic(() => import('@/components/binary-popup').then(mod => mod.BinaryPopup), { ssr: false });
+const SkillPopup = dynamic(() => import('@/components/skill-popup').then(mod => mod.SkillPopup), { ssr: false });
 import Image from 'next/image';
 
 // 🔌 Formspree
