@@ -38,25 +38,100 @@ export const learning = [
 
 export const skills = {
   programming: [
-    { name: "Java", level: 90, category: "Backend" },
-    { name: "Python", level: 85, category: "Backend" },
-    { name: "JavaScript", level: 88, category: "Frontend" },
-    { name: "TypeScript", level: 82, category: "Frontend" },
-    { name: "HTML/CSS", level: 90, category: "Frontend" }
+    { 
+      name: "Java", 
+      level: 90, 
+      category: "Backend",
+      description: "Robust object-oriented programming language used for building enterprise-grade applications. Experienced in multithreading, stream API, and building scalable backends using Spring Boot. Strong understanding of memory management and JVM internals. Capable of optimizing performance for complex systems."
+    },
+    { 
+      name: "Python", 
+      level: 85, 
+      category: "Backend",
+      description: "Versatile language proficient in scripting, data analysis, and backend development. Experienced with libraries like NumPy, Pandas, and frameworks like Flask/Django. Capable of writing clean, pythonic code for automation and ML. Excellent for rapid prototyping and data-driven applications."
+    },
+    { 
+      name: "JavaScript", 
+      level: 88, 
+      category: "Frontend",
+      description: "The language of the web. Proficient in ES6+ syntax, asynchronous programming (Promises, async/await), and DOM manipulation. Skilled in building interactive and dynamic user interfaces using modern frameworks. Deep understanding of closures, prototypes, and event loops."
+    },
+    { 
+      name: "TypeScript", 
+      level: 82, 
+      category: "Frontend",
+      description: "Superset of JavaScript adding static typing for better tooling and error prevention. Experienced in defining interfaces, types, and generics to write maintainable and scalable code for large applications. Enhances developer experience and code quality significantly."
+    },
+    { 
+      name: "HTML/CSS", 
+      level: 90, 
+      category: "Frontend",
+      description: "Foundation of web development. Skilled in writing semantic HTML5 and responsive CSS3. Experienced with Flexbox, Grid, animations, and modern styling approaches like CSS Modules and Tailwind CSS. Committed to accessibility and cross-browser compatibility."
+    }
   ],
   frameworks: [
-    { name: "React", level: 85, category: "Frontend" },
-    { name: "Angular", level: 80, category: "Frontend" },
-    { name: "Next.js", level: 78, category: "Fullstack" },
-    { name: "Flask", level: 82, category: "Backend" },
-    { name: "Node.js", level: 75, category: "Backend" }
+    { 
+      name: "React", 
+      level: 85, 
+      category: "Frontend",
+      description: "Library for building user interfaces. Proficient in functional components, hooks (useState, useEffect, etc.), and state management. Experienced in building reusable component libraries and single-page applications. Skilled in performance optimization using memoization and code splitting."
+    },
+    { 
+      name: "Angular", 
+      level: 80, 
+      category: "Frontend",
+      description: "Platform for building mobile and desktop web applications. Skilled in TypeScript-based architectural patterns, dependency injection, and RxJS for reactive programming. Experienced in building enterprise-level applications with complex routing and state management needs."
+    },
+    { 
+      name: "Next.js", 
+      level: 78, 
+      category: "Fullstack",
+      description: "React framework for production. Experienced with server-side rendering (SSR), static site generation (SSG), and API routes. Capable of building performant, SEO-friendly full-stack web applications. proficient in using App Router and Server Actions."
+    },
+    { 
+      name: "Flask", 
+      level: 82, 
+      category: "Backend",
+      description: "Micro web framework for Python. Skilled in building RESTful APIs, handling requests, and integrating with databases. Valid choice for lightweight services and rapid prototyping. Experienced in using extensions for authentication and database ORM."
+    },
+    { 
+      name: "Node.js", 
+      level: 75, 
+      category: "Backend",
+      description: "JavaScript runtime for server-side development. Experienced in building scalable network applications using event-driven, non-blocking I/O model. Skilled in using Express.js for API development. Capable of handling real-time data using WebSockets."
+    }
   ],
   tools: [
-    { name: "Git/GitHub", level: 88, category: "DevOps" },
-    { name: "MongoDB", level: 80, category: "Database" },
-    { name: "SQL", level: 85, category: "Database" },
-    { name: "System Design", level: 75, category: "Architecture" },
-    { name: "MERN Stack", level: 82, category: "Fullstack" }
+    { 
+      name: "Git/GitHub", 
+      level: 88, 
+      category: "DevOps",
+      description: "Version control system essential for collaboration. Proficient in branching strategies, resolving conflicts, and Pull Requests. Experienced with GitHub Actions for CI/CD pipelines. Committed to maintaining clean commit history and documentation."
+    },
+    { 
+      name: "MongoDB", 
+      level: 80, 
+      category: "Database",
+      description: "NoSQL database for modern applications. Skilled in designing schema-less data models, performing complex queries, and aggregation pipelines. Experienced in integrating with Node.js applications. Capable of handling large volumes of unstructured data."
+    },
+    { 
+      name: "SQL", 
+      level: 85, 
+      category: "Database",
+      description: "Standard language for relational database management. Proficient in writing complex queries, joins, and stored procedures. Experienced with database design, normalization, and optimization. Skilled in using MySQL and PostgreSQL for data persistence."
+    },
+    { 
+      name: "System Design", 
+      level: 75, 
+      category: "Architecture",
+      description: "Art of defining the architecture, components, and interfaces for a system. Transforming requirements into scalable and reliable solutions. Familiar with load balancing, caching, and database sharding concepts. Capable of designing high-availability systems."
+    },
+    { 
+      name: "MERN Stack", 
+      level: 82, 
+      category: "Fullstack",
+      description: "Full-stack JavaScript solution. Proficient in building end-to-end applications using MongoDB, Express.js, React, and Node.js. Capable of handling both frontend and backend development seamlessly. Experienced in deploying and maintaining full-stack applications."
+    }
   ]
 };
 

@@ -25,6 +25,7 @@ import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { BackgroundCode } from '@/components/background-code';
 import { personalInfo, skills, education, experience, projects, codeSnippets, cseCoreKnowledge, learning } from '@/lib/data';
 import { BinaryPopup } from '@/components/binary-popup';
+import { SkillPopup } from '@/components/skill-popup';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
@@ -46,6 +47,7 @@ export default function Portfolio() {
   const [highlightIndex, setHighlightIndex] = useState(-1);
   const [showProjectPopup, setShowProjectPopup] = useState(false);
   const [showBinaryPopup, setShowBinaryPopup] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState<any>(null);
   const getInTouchRef = useRef<HTMLButtonElement>(null);
   const downloadResumeRef = useRef<HTMLDivElement>(null);
 
@@ -481,12 +483,14 @@ export default function Portfolio() {
                       level={skill.level}
                       category={skill.category}
                       index={index}
+                      onClick={() => setSelectedSkill(skill)}
                     />
                   ))}
                 </div>
               </div>
             ))}
           </div>
+          <SkillPopup skill={selectedSkill} onClose={() => setSelectedSkill(null)} />
         </div>
       </section>
 

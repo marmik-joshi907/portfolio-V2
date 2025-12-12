@@ -7,16 +7,20 @@ interface SkillCardProps {
   level: number;
   category: string;
   index: number;
+  onClick?: () => void;
 }
 
-export function SkillCard({ name, level, category, index }: SkillCardProps) {
+export function SkillCard({ name, level, category, index, onClick }: SkillCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative"
+      className={`group relative ${onClick ? 'cursor-pointer' : ''}`}
+      onClick={onClick}
+      whileHover={onClick ? { scale: 1.02 } : {}}
+      whileTap={onClick ? { scale: 0.98 } : {}}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-electric-violet to-cyber-cyan rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md -z-10" />
       
