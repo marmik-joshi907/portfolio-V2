@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export function DownloadResume() {
   const openResume = () => {
-    window.open('/final_Resume[1].pdf', '_blank');
+    window.open('resume.pdf', '_blank');
   };
 
   return (
