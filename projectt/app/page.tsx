@@ -23,6 +23,7 @@ import { CustomCursor } from '@/components/custom-cursor';
 import { SectionHeading } from '@/components/section-heading';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { BackgroundCode } from '@/components/background-code';
+import { FloatingParticles } from '@/components/floating-particles';
 import { personalInfo, skills, education, experience, projects, codeSnippets, cseCoreKnowledge, learning } from '@/lib/data';
 import { AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -109,6 +110,7 @@ export default function Portfolio() {
       </div>
 
       <BackgroundCode />
+      <FloatingParticles />
 
       {/* Navigation */}
       <CustomCursor />
@@ -223,7 +225,7 @@ export default function Portfolio() {
               className="text-4xl sm:text-5xl md:text-7xl font-bold text-charcoal dark:text-cloud-gray mb-6 leading-tight"
             >
               Hi, I'm <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-violet to-cyber-cyan">
+              <span className="text-shimmer">
                 {personalInfo.name}
               </span>
             </motion.h1>

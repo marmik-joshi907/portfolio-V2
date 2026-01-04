@@ -154,6 +154,20 @@ export const education = [
 
 export const experience = [
   {
+    title: "Java Software Developer",
+    company: "Lumynixx Technology",
+    location: "Remote",
+    period: "Dec 2025 — Present",
+    type: "Part-time",
+    responsibilities: [
+      "Developing robust backend solutions using Java and Spring Boot framework",
+      "Building dynamic frontend interfaces with AngularJS",
+      "Creating scalable and maintainable enterprise-grade applications",
+      "Collaborating with cross-functional teams in a remote-first environment",
+      "Implementing best practices for code quality and performance optimization"
+    ]
+  },
+  {
     title: "Management Committee Member",
     company: "ISTE (Indian Society for Technical Education)",
     location: "Ahmedabad",
@@ -170,6 +184,33 @@ export const experience = [
 ];
 
 export const projects = [
+  {
+    title: "GearGuard: Maintenance System",
+    description: "Smart maintenance management system with centralized asset tracking, automated request workflows, and intuitive Kanban/Calendar views. Features drag-and-drop status management, overdue indicators, and equipment-level maintenance insights for both corrective and preventive maintenance.",
+    image: "https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&w=600",
+    technologies: ["React", "Flask", "MySQL", "Kanban", "Calendar View"],
+    github: "https://github.com/marmik-joshi907",
+    demo: "https://demo.com",
+    featured: true
+  },
+  {
+    title: "Blockchain Blue Carbon Registry",
+    description: "Web + mobile platform for NGOs and community groups enabling uploads of field evidence (photos, GPS, drone clips) with satellite-validated anchors. Uses Merkle anchoring + IPFS for tamper-resistant proof and affordable transparency in restoration projects.",
+    image: "https://images.pexels.com/photos/7694379/pexels-photo-7694379.jpeg?auto=compress&cs=tinysrgb&w=600",
+    technologies: ["Blockchain", "IPFS", "React Native", "Satellite API", "Smart Contracts"],
+    github: "https://github.com/marmik-joshi907",
+    demo: "https://demo.com",
+    featured: true
+  },
+  {
+    title: "Portfolio",
+    description: "This portfolio is more than just a showcase — it's a reflection of my journey, skills, and projects, designed to highlight both technical depth and clean UI/UX with stunning animations and modern design patterns.",
+    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=600",
+    technologies: ["TypeScript", "Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
+    github: "https://github.com/marmik-joshi907/portfolio-V2",
+    demo: "https://marmikjoshi.vercel.app",
+    featured: true
+  },
   {
     title: "NeuraAPI",
     description: "Developed a versatile RESTful API using Python and Flask to provide real-time AI-powered services, including text generation and summarization, powered by the research model.",
