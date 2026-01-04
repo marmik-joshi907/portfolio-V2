@@ -12,7 +12,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { FloatingNav } from '@/components/floating-nav';
+import { Navbar } from '@/components/layout/navbar';
+import { Footer } from '@/components/layout/footer';
 import { CurrentTime } from '@/components/current-time';
 import { DownloadResume } from '@/components/download-resume';
 import { CodeBlock } from '@/components/code-block';
@@ -114,83 +115,7 @@ export default function Portfolio() {
 
       {/* Navigation */}
       <CustomCursor />
-      <nav className="fixed top-0 w-full bg-cloud-gray/90 dark:bg-charcoal/90 backdrop-blur-md border-b border-stone/30 z-40">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4">
-          <div className="flex justify-between items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-3 min-w-0 flex-1"
-            >
-              <div className="w-8 h-8 bg-gradient-to-br from-electric-violet to-cyber-cyan rounded-lg flex items-center justify-center flex-shrink-0">
-                <Terminal className="w-4 h-4 text-cloud-gray" />
-              </div>
-              <h1 className="text-lg sm:text-xl font-bold text-charcoal dark:text-cloud-gray truncate">{personalInfo.name}</h1>
-            </motion.div>
-
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <div className="hidden sm:block">
-                <CurrentTime />
-              </div>
-              <ThemeToggle />
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 rounded-lg bg-stone/20 hover:bg-stone/30 transition-colors"
-              >
-                <div className="w-5 h-5 flex flex-col justify-center space-y-1">
-                  <div className={`w-full h-0.5 bg-charcoal dark:bg-cloud-gray transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-                  <div className={`w-full h-0.5 bg-charcoal dark:bg-cloud-gray transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-                  <div className={`w-full h-0.5 bg-charcoal dark:bg-cloud-gray transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
-                </div>
-              </button>
-
-              <div className="hidden md:flex space-x-6">
-                {['About', 'Skills', 'Experience', 'Projects', 'Contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-stone hover:text-electric-violet transition-colors duration-300 font-medium whitespace-nowrap"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile menu */}
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 pt-4 border-t border-stone/30"
-            >
-              <div className="flex flex-col space-y-3">
-                {['About', 'Skills', 'Experience', 'Projects', 'Contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => {
-                      scrollToSection(item.toLowerCase());
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-left text-stone hover:text-electric-violet transition-colors duration-300 font-medium py-2"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-              <div className="sm:hidden mt-4 pt-3 border-t border-stone/20">
-                <CurrentTime />
-              </div>
-            </motion.div>
-          )}
-        </div>
-      </nav>
-
-      <FloatingNav />
+      <Navbar />
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center relative px-3 sm:px-4 pt-20 overflow-hidden">
