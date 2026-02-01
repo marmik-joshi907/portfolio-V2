@@ -3,7 +3,7 @@ export const personalInfo = {
   title: "Software Engineer",
   email: "marmikjoshi52@gmail.com",
   location: "Ahmedabad, Gujarat, India",
-  bio: "High-achieving Computer Engineering student with exceptional 9.0 SPI, passionate about creating innovative solutions and contributing to impactful projects in the tech industry.",
+  bio: "High-achieving Computer Engineering student with exceptional 8.5 SPI, passionate about creating innovative solutions and contributing to impactful projects in the tech industry.",
   avatar: "hero-image.jpg",
   social: {
     github: "https://github.com/marmik-joshi907",
@@ -142,9 +142,9 @@ export const education = [
     institution: "SAL Institute of Technology & Engineering Research",
     location: "Ahmedabad",
     period: "Jul 2023 - Jul 2027",
-    gpa: "9.0/10.0 SPI",
+    gpa: "8.5/10.0 SPI",
     achievements: [
-      "Achieved consistent and commendable Semester Performance Index (SPI) of 9.0/10.0",
+      "Achieved consistent and commendable Semester Performance Index (SPI) of 8.5/10.0",
       "Ranked among top 1% of students in department for academic excellence",
       "Applied theoretical knowledge in practical academic projects",
       "Strong understanding of Core CSE concepts and emerging technologies"
@@ -255,7 +255,7 @@ console.log(\`Hello! I'm \${developer.name}\`);`,
 class SoftwareEngineer {
   constructor() {
     this.name = "Marmik Joshi";
-    this.spi = 9.0;
+    this.spi = 8.5;
     this.location = "Ahmedabad, India";
     this.interests = [
       "Full-stack Development",

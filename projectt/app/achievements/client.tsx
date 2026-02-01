@@ -50,7 +50,7 @@ const hackathons = [
 const awards = [
   {
     title: 'Academic Excellence Award',
-    description: 'Top 1% in Computer Engineering Department with 9.0 SPI',
+    description: 'Top 1% in Computer Engineering Department with 8.5 SPI',
     icon: Star,
   },
   {

@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`scroll-smooth ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         {/* JSON-LD (SSR) */}
         <Script
           id="ld-person"
