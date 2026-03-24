@@ -37,50 +37,40 @@ export function ExperienceClient() {
 
           {/* Timeline */}
           <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-electric-violet via-cyber-cyan to-electric-violet" />
+            {/* Timeline line — always on the left */}
+            <div className="absolute left-2 w-0.5 h-full bg-gradient-to-b from-electric-violet via-cyber-cyan to-electric-violet" />
 
             {experience.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`relative mb-12 ${
-                  index % 2 === 0 ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2 md:ml-auto'
-                }`}
+                className="relative mb-12"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-electric-violet rounded-full border-4 border-cloud-gray dark:border-charcoal shadow-lg shadow-electric-violet/30" />
+                <div className="absolute left-2 transform -translate-x-1/2 w-4 h-4 bg-electric-violet rounded-full border-4 border-cloud-gray dark:border-charcoal shadow-lg shadow-electric-violet/30 z-10" />
 
                 {/* Card */}
-                <div
-                  className={`ml-8 md:ml-0 ${
-                    index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'
-                  }`}
-                >
+                <div className="ml-10">
                   <div className="bg-white dark:bg-charcoal/50 rounded-2xl p-6 sm:p-8 border border-stone/20 shadow-lg hover:border-electric-violet/50 transition-all group">
                     {/* Header */}
-                    <div className={`${index % 2 === 0 ? 'md:text-right' : ''}`}>
+                    <div>
                       <Badge className="bg-electric-violet/10 text-electric-violet border-0 mb-3">
                         {exp.type}
                       </Badge>
                       <h3 className="text-xl sm:text-2xl font-bold text-charcoal dark:text-cloud-gray group-hover:text-electric-violet transition-colors">
                         {exp.title}
                       </h3>
-                      <div className="flex items-center gap-2 mt-2 text-electric-violet font-medium flex-wrap justify-start md:justify-end">
+                      <div className="flex items-center gap-2 mt-2 text-electric-violet font-medium flex-wrap">
                         <Building2 className="w-4 h-4" />
                         <span>{exp.company}</span>
                       </div>
                     </div>
 
                     {/* Meta */}
-                    <div
-                      className={`flex flex-wrap gap-4 mt-4 text-sm text-stone ${
-                        index % 2 === 0 ? 'md:justify-end' : 'justify-start'
-                      }`}
-                    >
+                    <div className="flex flex-wrap gap-4 mt-4 text-sm text-stone">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         {exp.period}
@@ -92,7 +82,7 @@ export function ExperienceClient() {
                     </div>
 
                     {/* Responsibilities */}
-                    <ul className={`mt-6 space-y-3 ${index % 2 === 0 ? 'md:text-left' : ''}`}>
+                    <ul className="mt-6 space-y-3">
                       {exp.responsibilities.map((resp, i) => (
                         <motion.li
                           key={i}

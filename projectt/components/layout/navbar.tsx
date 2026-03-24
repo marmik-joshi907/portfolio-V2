@@ -31,10 +31,22 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || isMobileMenuOpen
           ? 'bg-cloud-gray/95 dark:bg-charcoal/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
@@ -92,7 +104,7 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg bg-stone/10 hover:bg-stone/20 transition-colors"
+              className="lg:hidden p-2 rounded-lg bg-stone/10 hover:bg-stone/20 transition-colors relative z-50"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -103,39 +115,59 @@ export function Navbar() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm lg:hidden z-40"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+
+            {/* Menu Panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden absolute top-full left-0 right-0 z-50 bg-cloud-gray/98 dark:bg-charcoal/98 backdrop-blur-xl border-t border-stone/20 shadow-2xl"
             >
-              <div className="py-4 space-y-1 border-t border-stone/20">
-                {navLinks.map((link) => {
+              <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+                {navLinks.map((link, index) => {
                   const isActive = pathname === link.href;
                   return (
-                    <Link
+                    <motion.div
                       key={link.href}
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
-                        isActive
-                          ? 'bg-electric-violet/10 text-electric-violet'
-                          : 'text-stone hover:bg-stone/10 hover:text-charcoal dark:hover:text-cloud-gray'
-                      }`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
                     >
-                      {link.label}
-                    </Link>
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`block px-4 py-3 rounded-xl font-medium transition-all ${
+                          isActive
+                            ? 'bg-electric-violet/10 text-electric-violet border border-electric-violet/20'
+                            : 'text-stone hover:bg-stone/10 hover:text-charcoal dark:hover:text-cloud-gray'
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
                   );
                 })}
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
+

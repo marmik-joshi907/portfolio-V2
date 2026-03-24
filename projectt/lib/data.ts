@@ -3,7 +3,7 @@ export const personalInfo = {
   title: "Software Engineer",
   email: "marmikjoshi52@gmail.com",
   location: "Ahmedabad, Gujarat, India",
-  bio: "High-achieving Computer Engineering student with exceptional 8.5 SPI, passionate about creating innovative solutions and contributing to impactful projects in the tech industry.",
+  bio: "High-achieving Computer Engineering student with exceptional 8.8 SPI, passionate about creating innovative solutions and contributing to impactful projects in the tech industry.",
   avatar: "hero-image.jpg",
   social: {
     github: "https://github.com/marmik-joshi907",
@@ -142,9 +142,9 @@ export const education = [
     institution: "SAL Institute of Technology & Engineering Research",
     location: "Ahmedabad",
     period: "Jul 2023 - Jul 2027",
-    gpa: "8.5/10.0 SPI",
+    gpa: "8.8/10.0 SPI",
     achievements: [
-      "Achieved consistent and commendable Semester Performance Index (SPI) of 8.5/10.0",
+      "Achieved consistent and commendable Semester Performance Index (SPI) of 8.8/10.0",
       "Ranked among top 1% of students in department for academic excellence",
       "Applied theoretical knowledge in practical academic projects",
       "Strong understanding of Core CSE concepts and emerging technologies"
@@ -185,27 +185,45 @@ export const experience = [
 
 export const projects = [
   {
-    title: "GearGuard: Maintenance System",
-    description: "Smart maintenance management system with centralized asset tracking, automated request workflows, and intuitive Kanban/Calendar views. Features drag-and-drop status management, overdue indicators, and equipment-level maintenance insights for both corrective and preventive maintenance.",
-    image: "https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&w=600",
-    technologies: ["React", "Flask", "MySQL", "Kanban", "Calendar View"],
-    github: "https://github.com/marmik-joshi907",
-    demo: "https://demo.com",
+    title: "AETRIX 2026 — Satintel",
+    description: "A comprehensive environmental monitoring and analysis platform that leverages satellite imagery and machine learning to provide real-time insights into urban environmental conditions. Monitors vegetation health (NDVI), surface temperatures, air pollution levels, and soil moisture across major Indian cities.",
+    image: "/AETRIX.png",
+    technologies: ["React", "Python", "Flask", "Machine Learning", "Satellite API"],
+    github: "https://github.com/marmik-joshi907/Satintel",
+    demo: "",
     featured: true
   },
   {
-    title: "Blockchain Blue Carbon Registry",
-    description: "Web + mobile platform for NGOs and community groups enabling uploads of field evidence (photos, GPS, drone clips) with satellite-validated anchors. Uses Merkle anchoring + IPFS for tamper-resistant proof and affordable transparency in restoration projects.",
-    image: "https://images.pexels.com/photos/7694379/pexels-photo-7694379.jpeg?auto=compress&cs=tinysrgb&w=600",
-    technologies: ["Blockchain", "IPFS", "React Native", "Satellite API", "Smart Contracts"],
+    title: "GearGuard: Maintenance System",
+    description: "Smart maintenance management system with centralized asset tracking, automated request workflows, and intuitive Kanban/Calendar views. Features drag-and-drop status management, overdue indicators, and equipment-level maintenance insights for both corrective and preventive maintenance.",
+    image: "/gearguard.png",
+    technologies: ["React", "Flask", "MySQL", "Kanban", "Calendar View"],
     github: "https://github.com/marmik-joshi907",
-    demo: "https://demo.com",
+    demo: "",
+    featured: true
+  },
+  {
+    title: "Omicron Pharmatech Website",
+    description: "Modern corporate website for Omicron Pharmatech featuring a comprehensive product catalog, certificates & licenses page, trusted seller verification, and fully responsive design built with Next.js and modern web technologies.",
+    image: "/omicron.png",
+    technologies: ["Next.js", "React", "CSS", "Responsive Design"],
+    github: "",
+    demo: "",
+    featured: true
+  },
+  {
+    title: "Bug Shield AI",
+    description: "A web-based security tool that automatically detects common vulnerabilities in source code using regex-based pattern matching. Acts as a virtual code security assistant, identifying risks such as SQL Injection, XSS, and Hardcoded Credentials.",
+    image: "/BSAI.png",
+    technologies: ["Python", "Regex", "Security", "Web App"],
+    github: "https://github.com/marmik-joshi907/BSAI",
+    demo: "",
     featured: true
   },
   {
     title: "Portfolio",
     description: "This portfolio is more than just a showcase — it's a reflection of my journey, skills, and projects, designed to highlight both technical depth and clean UI/UX with stunning animations and modern design patterns.",
-    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "/portfolio.png",
     technologies: ["TypeScript", "Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
     github: "https://github.com/marmik-joshi907/portfolio-V2",
     demo: "https://marmikjoshi.vercel.app",
@@ -214,9 +232,18 @@ export const projects = [
   {
     title: "NeuraAPI",
     description: "Developed a versatile RESTful API using Python and Flask to provide real-time AI-powered services, including text generation and summarization, powered by the research model.",
-    image: "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "/BSAI.png",
     technologies: ["Python", "Flask", "REST API", "Research", "AI/ML"],
     github: "https://github.com/marmik-joshi907/NeuraAPI",
+    demo: "",
+    featured: true
+  },
+  {
+    title: "Blockchain Blue Carbon Registry",
+    description: "Web + mobile platform for NGOs and community groups enabling uploads of field evidence (photos, GPS, drone clips) with satellite-validated anchors. Uses Merkle anchoring + IPFS for tamper-resistant proof and affordable transparency in restoration projects.",
+    image: "https://images.pexels.com/photos/7694379/pexels-photo-7694379.jpeg?auto=compress&cs=tinysrgb&w=600",
+    technologies: ["Blockchain", "IPFS", "React Native", "Satellite API", "Smart Contracts"],
+    github: "https://github.com/marmik-joshi907",
     demo: "https://demo.com",
     featured: true
   },
@@ -255,7 +282,7 @@ console.log(\`Hello! I'm \${developer.name}\`);`,
 class SoftwareEngineer {
   constructor() {
     this.name = "Marmik Joshi";
-    this.spi = 8.5;
+    this.spi = 8.8;
     this.location = "Ahmedabad, India";
     this.interests = [
       "Full-stack Development",

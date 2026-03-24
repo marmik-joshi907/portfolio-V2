@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Trophy, GraduationCap, Rocket, Medal, Star, ExternalLink } from 'lucide-react';
+import { Award, Trophy, GraduationCap, Rocket, Medal, Star, ExternalLink, Target } from 'lucide-react';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { CustomCursor } from '@/components/custom-cursor';
@@ -32,26 +32,41 @@ const certifications = [
 
 const hackathons = [
   {
-    title: 'Smart India Hackathon',
+    title: 'AETRIX 2026',
     position: 'Participant',
-    year: '2024',
-    description: 'Developed innovative solution for government sector challenges',
+    year: '2026',
+    description: 'Built Satintel — a satellite environmental intelligence platform leveraging ML and satellite imagery for real-time urban environmental monitoring across Indian cities.',
     icon: Rocket,
+    link: 'https://www.linkedin.com/posts/marmikjoshi_aetrix-aetrix2026-sustainableenvironment-ugcPost-7441296683381968896-fFla?utm_source=share&utm_medium=member_desktop&rcm=ACoAADAhlNgBSmTdjDa3iOwJuiEfuwnfkLu8cmg',
   },
   {
-    title: 'College Tech Fest Hackathon',
-    position: 'Finalist',
-    year: '2024',
-    description: 'Built smart maintenance management system',
+    title: 'Odoo x Adani Hackathon',
+    position: 'Round 1 — Online',
+    year: '2025',
+    description: 'Built GearGuard — a smart maintenance management system with centralized asset tracking, automated workflows, and Kanban/Calendar views for the online qualification round.',
     icon: Trophy,
+    link: '',
+  },
+  {
+    title: 'Smart India Hackathon (SIH)',
+    position: 'Participant',
+    year: '2024',
+    description: 'Developed innovative solution for government sector challenges as part of the national-level Smart India Hackathon.',
+    icon: Rocket,
+    link: 'https://www.linkedin.com/in/marmikjoshi/',
   },
 ];
 
 const awards = [
   {
     title: 'Academic Excellence Award',
-    description: 'Top 1% in Computer Engineering Department with 8.5 SPI',
+    description: 'Top 1% in Computer Engineering Department with 8.8 SPI',
     icon: Star,
+  },
+  {
+    title: 'GATE Score — Pre-Final Year',
+    description: 'Scored 29 in GATE during pre-final year (General cutoff: 30) — demonstrating strong fundamentals in CS/IT core subjects.',
+    icon: Target,
   },
   {
     title: 'ISTE Management Committee Member',
@@ -143,7 +158,7 @@ export function AchievementsClient() {
               <h2 className="text-2xl sm:text-3xl font-bold">Hackathons</h2>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {hackathons.map((hack, index) => (
                 <motion.div
                   key={hack.title}
@@ -167,7 +182,18 @@ export function AchievementsClient() {
                     {hack.title}
                   </h3>
                   <p className="text-cyber-cyan font-medium text-sm mb-2">{hack.position}</p>
-                  <p className="text-stone text-sm">{hack.description}</p>
+                  <p className="text-stone text-sm mb-3">{hack.description}</p>
+                  {hack.link && (
+                    <a
+                      href={hack.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-cyber-cyan hover:text-electric-violet transition-colors font-medium"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      View on LinkedIn
+                    </a>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -185,7 +211,7 @@ export function AchievementsClient() {
               <h2 className="text-2xl sm:text-3xl font-bold">Awards & Recognition</h2>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {awards.map((award, index) => (
                 <motion.div
                   key={award.title}
@@ -215,3 +241,4 @@ export function AchievementsClient() {
     </div>
   );
 }
+
