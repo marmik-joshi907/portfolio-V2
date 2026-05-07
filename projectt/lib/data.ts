@@ -157,7 +157,7 @@ export const experience = [
     title: "Java Software Developer",
     company: "Lumynixx Technology",
     location: "Remote",
-    period: "Dec 2025 — Present",
+    period: "Dec 2025 — May 2025",
     type: "Part-time",
     responsibilities: [
       "Developing robust backend solutions using Java and Spring Boot framework",
